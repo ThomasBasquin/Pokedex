@@ -11,18 +11,18 @@ function App() {
       <img
         src="assets/Pokedex.png"
         alt="Pokedex"
-        className="w-9/12 mx-auto pt-2 md:w-64 md:pt-11 xl:w-80 xl:pt-10 2xl:w-[39] "
+        className="w-64 mx-auto pt-8 md:w-80 md:pt-11 xl:w-80 xl:pt-10 2xl:w-4/12 "
       />
-      <div className="w-full flex flex-col justify-center items-center absolute bottom-3 xl:bottom-7 ">
+      <div className="w-full flex flex-col justify-center items-center absolute bottom-7 md:bottom-14 xl:bottom-10 2xl:bottom-10">
         <Link to="/pokedex">
           <img
             src="assets/pokeball.png"
             alt="pokeball"
-            className="w-24 bottom-12 animate-bounce xl:w-20 xl:bottom-6"
+            className="w-24 bottom-12 animate-bounce xl:w-24 xl:bottom-6 2xl:w-28"
           />
         </Link>
         <Link to="/pokedex">
-          <h2 className="text-white mt-2 hover:text-gray-200 xl:mt-2 xl:text-lg">
+          <h2 className="text-white mt-2 hover:text-gray-200 md:text-lg xl:mt-2 xl:text-lg 2xl:text-2xl">
             Cliquer sur la Pokeball pour entrer
           </h2>
         </Link>
