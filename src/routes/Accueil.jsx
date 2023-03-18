@@ -36,28 +36,7 @@ function App() {
         laptop-sm:w-80 laptop-sm:pt-10 
         laptop-lg:w-3/12 "
       />
-      <div
-        className="
-      w-11/12 mx-auto h-60 bg-white bg-opacity-40 rounded-lg mt-4 p-4
-      "
-      >
-        <h2
-          className="
-        text-center text-xl font-semibold text-gray-800 mb-3
-        "
-        >
-          Le saviez-vous ?
-        </h2>
-        <p
-          className="
-         text-gray-800 text-base text-justify tracking-normal
-          "
-        >
-          Le Pokémon le plus puissant est Mewtwo, un Pokémon de type Psy. Il est
-          capable de battre n'importe quel Pokémon. Il est aussi capable de
-          battre Mew, le Pokémon le plus rare de tous les temps.
-        </p>
-      </div>
+
       <div
         className="
       w-full flex flex-col justify-center items-center absolute bottom-7 
