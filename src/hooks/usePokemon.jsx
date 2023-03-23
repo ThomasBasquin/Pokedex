@@ -1,5 +1,9 @@
 import { useState, useEffect } from "react";
-import { getPokemons, getPokemonById } from "../services/pokemonApi";
+import {
+  getPokemons,
+  getPokemonText,
+  getPokemonInfo,
+} from "../services/pokemonApi";
 
 export const usePokemons = (limit, offset) => {
   const [loading, setLoading] = useState(false);
@@ -25,7 +29,7 @@ export const usePokemons = (limit, offset) => {
   return { loading, error, data };
 };
 
-export const usePokemon = (id) => {
+export const usePokemonText = (id) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [data, setData] = useState(null);
@@ -34,7 +38,31 @@ export const usePokemon = (id) => {
     const fetchPokemon = async () => {
       setLoading(true);
       try {
-        const pokemon = await getPokemonById(id);
+        const pokemon = await getPokemonText(id);
+        setData(pokemon);
+      } catch (err) {
+        setError(err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchPokemon();
+  }, [id]);
+
+  return { loading, error, data };
+};
+
+export const usePokemonInfo = (id) => {
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const [data, setData] = useState(null);
+
+  useEffect(() => {
+    const fetchPokemon = async () => {
+      setLoading(true);
+      try {
+        const pokemon = await getPokemonInfo(id);
         setData(pokemon);
       } catch (err) {
         setError(err);
