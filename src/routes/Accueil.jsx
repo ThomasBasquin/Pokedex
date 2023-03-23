@@ -8,25 +8,8 @@ function App() {
     document.documentElement.style.setProperty("--vh", `${vh}px`);
   });
 
-  const [playAudio, setPlayAudio] = useState(false);
-
-  useEffect(() => {
-    // Baisse du volume de la page à 50%
-    document.body.volume = 0.1;
-  }, []);
-
-  function handleAudio() {
-    setPlayAudio(true);
-  }
-
   return (
-    <div
-      className="w-screen h-screen bg-pokemon-bg bg-center bg-no-repeat bg-cover p-0 m-0 align-middle tracking-wide"
-      onClick={handleAudio}
-    >
-      {playAudio && (
-        <audio src="assets/pokemon-theme.mp3" autoPlay loop></audio>
-      )}
+    <div className="w-screen h-screen bg-pokemon-bg bg-center bg-no-repeat bg-cover p-0 m-0 align-middle tracking-wide">
       <img
         src="assets/Pokedex.png"
         alt="Pokedex"
@@ -49,7 +32,8 @@ function App() {
           <img
             src="assets/pokeball.png"
             alt="pokeball"
-            className="w-24 bottom-12 animate-bounce transition-all duration-200
+            className="
+            w-24 bottom-12 animate-bounce transition-all duration-200 
             laptop-sm:w-20 laptop-sm:hover:w-24 laptop-sm:bottom-6 
             laptop-lg:w-24 laptop-lg:hover:w-28 
             desktop-xl:w-28 desktop-xl:hover:w-32"
@@ -57,7 +41,7 @@ function App() {
         </Link>
         <h2
           className="
-        text-white mt-2 font-semibold text-lg hover:text-gray-200 hover:scale-110 hover:tracking-wider transition-all duration-200 
+        text-white mt-2 font-semibold text-lg hover:text-gray-200 hover:scale-110 hover:tracking-wider hover:cursor-default transition-all duration-200 
         tab:text-lg 
         laptop-sm:mt-2 laptop-sm:text-lg 
         laptop-lg:text-xl desktop-xl:text-2xl  "
