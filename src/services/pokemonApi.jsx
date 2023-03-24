@@ -18,10 +18,14 @@ export const getPokemonData = async (id) => {
     getPokemonInfo(id),
   ]);
 
-  const frenchName = textData.names.find((name) => name.language.id === 5);
+  console.log(textData);
 
   return {
-    name: frenchName.name,
-    info: infoData,
+    name: textData.names[4].name,
+    description: textData.flavor_text_entries[77].flavor_text,
+    types: infoData.types.map((type) => type.type.name),
+    abilities: infoData.abilities.map((ability) => ability.ability.name),
+    taille: infoData.height,
+    poids: infoData.weight,
   };
 };

@@ -1,8 +1,8 @@
 import React from "react";
-import { usePokemon } from "../hooks/usePokemon";
+import { usePokemonData } from "../hooks/usePokemon";
 
 const PokemonName = ({ id, color }) => {
-  const { loading, error, data } = usePokemon(id);
+  const { loading, error, data } = usePokemonData(id);
 
   const textColorClass = color === "primary" ? "text-white" : "text-black";
 

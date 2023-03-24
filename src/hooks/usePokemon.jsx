@@ -1,35 +1,7 @@
 import { useState, useEffect } from "react";
-import {
-  getPokemons,
-  getPokemonText,
-  getPokemonInfo,
-} from "../services/pokemonApi";
+import { getPokemonData } from "../services/pokemonApi";
 
-export const usePokemons = (limit, offset) => {
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
-  const [data, setData] = useState([]);
-
-  useEffect(() => {
-    const fetchPokemons = async () => {
-      setLoading(true);
-      try {
-        const pokemons = await getPokemons(limit, offset);
-        setData(pokemons);
-      } catch (err) {
-        setError(err);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchPokemons();
-  }, [limit, offset]);
-
-  return { loading, error, data };
-};
-
-export const usePokemonText = (id) => {
+export const usePokemonData = (id) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [data, setData] = useState(null);
@@ -38,8 +10,8 @@ export const usePokemonText = (id) => {
     const fetchPokemon = async () => {
       setLoading(true);
       try {
-        const pokemon = await getPokemonText(id);
-        setData(pokemon);
+        const pokemonData = await getPokemonData(id);
+        setData(pokemonData);
       } catch (err) {
         setError(err);
       } finally {
@@ -50,29 +22,7 @@ export const usePokemonText = (id) => {
     fetchPokemon();
   }, [id]);
 
-  return { loading, error, data };
-};
-
-export const usePokemonInfo = (id) => {
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
-  const [data, setData] = useState(null);
-
-  useEffect(() => {
-    const fetchPokemon = async () => {
-      setLoading(true);
-      try {
-        const pokemon = await getPokemonInfo(id);
-        setData(pokemon);
-      } catch (err) {
-        setError(err);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchPokemon();
-  }, [id]);
+  console.log(data);
 
   return { loading, error, data };
 };
