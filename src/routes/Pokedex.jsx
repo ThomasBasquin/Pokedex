@@ -10,7 +10,7 @@ function Pokedex() {
   const [colorSecondary, setColorSecondary] = useState("");
 
   return (
-    <div>
+    <div className=" w-screen h-screen bg-fire-100 tracking-wide">
       <img
         src="assets/Pokedex.png"
         alt="Pokedex"

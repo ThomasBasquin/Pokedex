@@ -9,7 +9,7 @@ function App() {
   });
 
   return (
-    <div className="w-screen h-screen bg-pokemon-bg bg-center bg-no-repeat bg-cover p-0 m-0 align-middle tracking-wide">
+    <div className="w-screen h-screen bg-pokemon-bg bg-center bg-no-repeat bg-cover p-0 m-0 align-middle tracking-wide ">
       <img
         src="assets/Pokedex.png"
         alt="Pokedex"

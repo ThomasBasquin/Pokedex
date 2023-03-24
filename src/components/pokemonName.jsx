@@ -8,9 +8,9 @@ const PokemonName = ({ id, color }) => {
   if (!data) return null;
 
   return (
-    <p className={`text-xl m-3 ml-6`}>
+    <p className={`text-xl m-3 ml-4 text-white`}>
       <span className="font-bold">#{id}</span>{" "}
-      <span className="font-medium">- {data.name}</span>
+      <span className="font-normal">- {data.name}</span>
     </p>
   );
 };
