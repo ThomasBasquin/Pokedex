@@ -21,10 +21,8 @@ function Pokedex() {
         laptop-lg:w-3/12 "
       />
       <ImageGroup id={id} />
-      <div className="flex justify-between  ">
-        <PokemonName id={id} />
-        <CapacityButton />
-      </div>
+      <PokemonName id={id} />
+      <CapacityButton />
       <button
         onClick={() => {
           setId(id + 1);
@@ -32,7 +30,6 @@ function Pokedex() {
       >
         Pokemon suivant
       </button>
-      <Link to="/">Retour à l'accueil</Link>
     </div>
   );
 }

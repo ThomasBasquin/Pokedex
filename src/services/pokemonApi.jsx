@@ -18,22 +18,25 @@ export const getPokemonData = async (id) => {
     getPokemonInfo(id),
   ]);
 
-  console.log(textData);
-
-  // Filtrer les entrées de flavor text en français
-  const frenchFlavorTextEntries = textData.flavor_text_entries.filter(
+  // Trouver la première entrée de flavor text en français ou utiliser une chaîne de caractères par défaut si non disponible
+  const frenchFlavorTextEntry = textData.flavor_text_entries.find(
     (entry) => entry.language.name === "fr"
-  );
+  ) || { flavor_text: "Description non disponible" };
 
-  // Sélectionner le dernier élément du tableau ou utiliser une chaîne de caractères par défaut si non disponible
-  const frenchFlavorText =
-    frenchFlavorTextEntries.length > 0
-      ? frenchFlavorTextEntries[frenchFlavorTextEntries.length - 1].flavor_text
-      : "Description non disponible";
+  // Trouver le nom en français ou utiliser une chaîne de caractères par défaut si non disponible
+  const frenchNameEntry = textData.names.find(
+    (nameEntry) => nameEntry.language.name === "fr"
+  ) || { name: "Nom non disponible" };
+
+  // trouver le nom en japonais ou utiliser une chaîne de caractères par défaut si non disponible
+  const japaneseNameEntry = textData.names.find(
+    (nameEntry) => nameEntry.language.name === "ja"
+  ) || { name: "Nom non disponible" };
 
   return {
-    name: textData.names[4].name,
-    description: frenchFlavorText,
+    name: frenchNameEntry.name,
+    japaneseName: japaneseNameEntry.name,
+    description: frenchFlavorTextEntry.flavor_text,
     types: infoData.types.map((type) => type.type.name),
     abilities: infoData.abilities.map((ability) => ability.ability.name),
     taille: infoData.height,
