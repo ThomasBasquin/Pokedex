@@ -3,10 +3,21 @@ import React, { useEffect, useState } from "react";
 import Copyright from "../components/copyright";
 
 function App() {
-  window.addEventListener("resize", () => {
+  const setWindowHeight = () => {
     let vh = window.innerHeight * 0.01;
     document.documentElement.style.setProperty("--vh", `${vh}px`);
-  });
+  };
+
+  useEffect(() => {
+    setWindowHeight(); // Définir la hauteur initiale
+
+    window.addEventListener("resize", setWindowHeight); // Mettre à jour la hauteur lors du redimensionnement
+
+    // Supprimer l'écouteur d'événements lors du démontage du composant
+    return () => {
+      window.removeEventListener("resize", setWindowHeight);
+    };
+  }, []);
 
   return (
     <div className="w-screen h-screen bg-pokemon-bg bg-center bg-no-repeat bg-cover p-0 m-0 align-middle tracking-wide ">
@@ -14,7 +25,7 @@ function App() {
         src="assets/Pokedex.png"
         alt="Pokedex"
         className="
-        w-64 mx-auto pt-10 
+        w-64 mx-auto pt-16 
         tab:w-80 tab:pt-11 
         laptop-sm:w-80 laptop-sm:pt-10 
         laptop-lg:w-3/12 "
