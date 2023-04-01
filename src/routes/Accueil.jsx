@@ -50,9 +50,14 @@ function App() {
             desktop-xl:w-28 desktop-xl:hover:w-32"
           />
         </Link>
+        <h2 className="tab:hidden text-white mt-2 font-semibold text-lg hover:text-gray-200 hover:scale-110 hover:tracking-wider hover:cursor-default transition-all duration-200">
+          Appuyer sur la Pokeball pour entrer
+        </h2>
         <h2
           className="
-        text-white mt-2 font-semibold text-lg hover:text-gray-200 hover:scale-110 hover:tracking-wider hover:cursor-default transition-all duration-200 
+        hidden 
+        text-white mt-2 font-semibold text-lg hover:text-gray-200 hover:scale-110 hover:tracking-wider hover:cursor-default transition-all duration-200
+        tab:inline 
         tab:text-lg 
         laptop-sm:mt-2 laptop-sm:text-lg 
         laptop-lg:text-xl desktop-xl:text-2xl  "

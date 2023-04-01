@@ -2,14 +2,22 @@ import axios from "axios";
 
 const API_BASE_URL = "https://pokeapi.co/api/v2";
 
-export const getPokemonText = async (id) => {
+const getPokemonText = async (id) => {
   const response = await axios.get(`${API_BASE_URL}/pokemon-species/${id}`);
   return response.data;
 };
 
-export const getPokemonInfo = async (id) => {
+const getPokemonInfo = async (id) => {
   const response = await axios.get(`${API_BASE_URL}/pokemon/${id}`);
   return response.data;
+};
+
+export const preloadPokemonData = async (id) => {
+  try {
+    await getPokemonData(id);
+  } catch (err) {
+    console.error(`Error preloading Pokemon data for ID: ${id}`, err);
+  }
 };
 
 export const getPokemonData = async (id) => {
