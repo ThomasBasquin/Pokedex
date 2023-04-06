@@ -4,7 +4,6 @@ import PokemonName from "../components/pokemonName";
 import CapacityButton from "../components/capacityButton";
 import ImageGroup from "../components/imageGroup";
 import { preloadPokemonData } from "../services/pokemonApi";
-import { preloadImage } from "../components/imageGroup";
 
 function Pokedex() {
   const [id, setId] = useState(1);
@@ -31,10 +30,6 @@ function Pokedex() {
         onClick={() => {
           setId(id + 1);
           preloadPokemonData(id + 2);
-
-          const nextPaddedId = String(id + 2).padStart(3, "0");
-          const nextImageUrl = `https://assets.pokemon.com/assets/cms2/img/pokedex/full/${nextPaddedId}.png`;
-          preloadImage(nextImageUrl);
         }}
       >
         Pokemon suivant
