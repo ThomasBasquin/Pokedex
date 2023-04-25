@@ -17,7 +17,7 @@ Ce projet est une application web basée sur React qui permet aux utilisateurs d
 2. Accédez au dossier du projet : `cd projet-pokemon`
 3. Installez les dépendances avec `npm install` ou `yarn install`
 4. Lancez l'application en mode développement avec `npm start` ou `yarn start`
-5. Ouvrez [http://localhost:3000](http://localhost:3000) pour visualiser l'application dans le navigateur.
+5. Ouvrez [http://localhost:5173](http://localhost:5173) pour visualiser l'application dans le navigateur.
 
 ## Technologies utilisées
 
