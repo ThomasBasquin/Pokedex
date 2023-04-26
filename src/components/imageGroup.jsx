@@ -15,23 +15,21 @@ const ImageGroup = ({ id }) => {
   return (
     <div
       className="
-      flex flex-col items-center justify-center mt-12"
+      flex flex-col items-center justify-center pt-24"
     >
       <p className="text-6xl font-[1000] text-fire-200 ">
         {japanesePokemonName}
       </p>
-      <img className="-mt-9 w-60 -ml-14" src={url} alt="pokemon" />
-      {types.map((type) => {
-        return (
-          <img
-            className="
-          w-10 h-10
-          "
-            src={`assets/${type}.png`}
-            alt={type}
-          />
-        );
-      })}
+      <div className="flex flex-row items-center">
+        <img className="w-60  -mt-6 z-10" src={url} alt="pokemon" />
+        <div className="flex flex-col items-center -mt-32 -ml-8">
+          {types.map((type) => {
+            return (
+              <img className="w-24" src={`assets/${type}.png`} alt={type} />
+            );
+          })}
+        </div>
+      </div>
     </div>
   );
 };
