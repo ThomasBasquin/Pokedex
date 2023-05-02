@@ -1,8 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { usePokemonData } from "../hooks/usePokemon";
+import { preloadPokemonImage } from "../services/pokemonImage";
 
 const ImageGroup = ({ id }) => {
   const { loading, error, data } = usePokemonData(id);
+
+  useEffect(() => {
+    if (id < 1281) {
+      preloadPokemonImage(id + 1);
+    }
+  }, [id]);
 
   if (error) return <p>Error : {error.message}</p>;
   if (!data) return null;

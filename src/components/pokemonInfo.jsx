@@ -13,7 +13,7 @@ const pokemonInfo = ({ id }) => {
 
   return (
     <div className="mt-10 flex flex-col justify-between h-36 ">
-      <p className="text-base ml-3 text-white mr-3 tracking-normal">
+      <p className="text-base ml-5 text-white mr-5 tracking-normal">
         <span className="">{pokemonDescription}</span>
       </p>
       <div className="flex flex-col text-right mr-5 mt-2">

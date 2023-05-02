@@ -21,8 +21,12 @@ function Pokedex() {
       <PokemonInfo id={id} />
       <button
         onClick={() => {
-          setId(id + 1);
-          preloadPokemonData(id + 2);
+          if (id < 1281) {
+            setId(id + 1);
+          }
+          if (id < 1280) {
+            preloadPokemonData(id + 2);
+          }
         }}
       >
         Pokemon suivant
