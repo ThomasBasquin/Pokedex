@@ -12,11 +12,11 @@ const pokemonInfo = ({ id }) => {
   const { poids: pokemonWeight } = data;
 
   return (
-    <div className="mt-10 flex flex-col justify-between h-36 ">
+    <div className="mt-9 flex flex-col justify-between h-36 ">
       <p className="text-base ml-5 text-white mr-5 tracking-normal">
         <span className="">{pokemonDescription}</span>
       </p>
-      <div className="flex flex-col text-right mr-5 mt-2">
+      <div className="flex flex-col text-right mr-5">
         <p className="text-base ml-3 text-white tracking-wide">
           <span className="font-bold mr-1">Taille : </span>{" "}
           <span className="font-normal">{pokemonHeight / 10} m</span>

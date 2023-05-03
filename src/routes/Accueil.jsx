@@ -1,8 +1,30 @@
 import { Link } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import Copyright from "../components/copyright";
+import { iconPreload } from "../hooks/iconPreload";
 
 function App() {
+  const typeList = [
+    "normal",
+    "fighting",
+    "flying",
+    "poison",
+    "ground",
+    "rock",
+    "bug",
+    "ghost",
+    "steel",
+    "fire",
+    "water",
+    "grass",
+    "electric",
+    "psychic",
+    "ice",
+    "dragon",
+    "dark",
+    "fairy",
+  ];
+
   const setWindowHeight = () => {
     let vh = window.innerHeight * 0.01;
     document.documentElement.style.setProperty("--vh", `${vh}px`);
@@ -12,6 +34,8 @@ function App() {
     setWindowHeight(); // Définir la hauteur initiale
 
     window.addEventListener("resize", setWindowHeight); // Mettre à jour la hauteur lors du redimensionnement
+
+    iconPreload(typeList);
 
     // Supprimer l'écouteur d'événements lors du démontage du composant
     return () => {

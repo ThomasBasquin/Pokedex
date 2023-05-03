@@ -10,9 +10,9 @@ const PokemonName = ({ id, color }) => {
   const { name: pokemonName } = data;
 
   return (
-    <p className="text-xl ml-3 text-white tracking-wide">
-      <span className="font-bold">#{id}</span>{" "}
-      <span className="font-normal">- {pokemonName}</span>
+    <p className="text-lg ml-3 text-white tracking-wide">
+      <span className="font-normal">#{id}</span>{" "}
+      <span className="font-bold">- {pokemonName}</span>
     </p>
   );
 };
