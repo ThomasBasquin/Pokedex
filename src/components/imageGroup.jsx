@@ -1,12 +1,30 @@
 import React, { useEffect, useState } from "react";
 import { usePokemonData } from "../hooks/usePokemon";
 import { preloadPokemonImage } from "../services/pokemonImage";
-import typeToColorClass from "../assets/typeColors";
 import classNames from "classnames";
+import "../assets/pokemonColors.css";
 
 const ImageGroup = ({ id }) => {
   const [primaryType, setPrimaryType] = useState("grass");
   const { loading, error, data } = usePokemonData(id);
+
+  const getTypeColors = (type) => {
+    const primaryClass = `primary${
+      type.charAt(0).toUpperCase() + type.slice(1)
+    }`;
+    const secondaryClass = `secondary${
+      type.charAt(0).toUpperCase() + type.slice(1)
+    }`;
+    return { primaryClass, secondaryClass };
+  };
+
+  const { primaryClass, secondaryClass } = getTypeColors(primaryType);
+  const dynamicPrimaryColorClass = classNames(primaryClass);
+  const dynamicSecondaryColorClass = classNames(
+    "text-6xl",
+    "font-[1000]",
+    secondaryClass
+  );
 
   useEffect(() => {
     if (id < 1281) {
@@ -24,15 +42,6 @@ const ImageGroup = ({ id }) => {
   if (!data) return null;
 
   const { japaneseName: japanesePokemonName, types: types } = data;
-  const txtColorClass =
-    `text-${typeToColorClass[primaryType].replace("-100", "-200")}` ||
-    "text-grass-200";
-
-  const dynamicTxtColorClass = classNames(
-    "text-6xl",
-    "font-[1000]",
-    txtColorClass
-  );
 
   const paddedId = String(id).padStart(3, "0");
   const url = `https://assets.pokemon.com/assets/cms2/img/pokedex/full/${paddedId}.png`;
@@ -42,7 +51,7 @@ const ImageGroup = ({ id }) => {
       className="
       flex flex-col items-center justify-center pt-24"
     >
-      <p className={dynamicTxtColorClass}>{japanesePokemonName}</p>
+      <p className={dynamicSecondaryColorClass}>{japanesePokemonName}</p>
       <div className="flex flex-row items-start h-56">
         <img className="w-60  -mt-8 z-10" src={url} alt="pokemon" />
         <div className="flex flex-col items-center -ml-4 mb-16">

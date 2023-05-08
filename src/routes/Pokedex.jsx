@@ -6,24 +6,41 @@ import CapacityButton from "../components/capacityButton";
 import ImageGroup from "../components/imageGroup";
 import { preloadPokemonData } from "../services/pokemonApi";
 import { usePokemonData } from "../hooks/usePokemon";
-import typeToColorClass from "../assets/typeColors";
+import "../assets/pokemonColors.css";
+import classNames from "classnames";
 
 function Pokedex() {
   const [id, setId] = useState(1);
-  const [primaryType, setPrimaryType] = useState("fire");
-
+  const [primaryType, setPrimaryType] = useState("grass");
   const { loading, error, data } = usePokemonData(id);
+
+  // --------------------------- Type Color ---------------------------
 
   useEffect(() => {
     if (data) {
-      setPrimaryType(data.types[0] || "poison");
+      setPrimaryType(data.types[0] || "grass");
     }
   }, [data]);
 
-  const bgColorClass = typeToColorClass[primaryType] || "bg-fire-100";
+  const getTypeColors = (type) => {
+    const primaryClass = `primary${
+      type.charAt(0).toUpperCase() + type.slice(1)
+    }`;
+    const secondaryClass = `secondary${
+      type.charAt(0).toUpperCase() + type.slice(1)
+    }`;
+    return { primaryClass, secondaryClass };
+  };
+
+  const { primaryClass, secondaryClass } = getTypeColors(primaryType);
+  const dynamicPrimaryColorClass = classNames(primaryClass);
+
+  // ------------------------------------------------------
 
   return (
-    <div className={`w-screen h-screen bg-${bgColorClass} tracking-wide`}>
+    <div
+      className={`w-screen h-screen bg-${dynamicPrimaryColorClass} tracking-wide`}
+    >
       <ImageGroup id={id} />
       <div className="flex flex-shrink justify-between mt-7">
         <PokemonName id={id} />
