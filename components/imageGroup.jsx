@@ -1,42 +1,27 @@
 import React, { useEffect, useState } from "react";
 import { usePokemonData } from "../hooks/usePokemon";
 import { preloadPokemonImage } from "../services/pokemonImage";
+import { preloadJapaneseName } from "../services/japaneseName";
 import classNames from "classnames";
 import Image from "next/image";
 
-const ImageGroup = ({ id }) => {
-  const [primaryType, setPrimaryType] = useState("grass");
+const ImageGroup = ({ id, secondaryClass }) => {
   const { loading, error, data } = usePokemonData(id);
 
-  const getTypeColors = (type) => {
-    const primaryClass = `primary${
-      type.charAt(0).toUpperCase() + type.slice(1)
-    }`;
-    const secondaryClass = `secondary${
-      type.charAt(0).toUpperCase() + type.slice(1)
-    }`;
-    return { primaryClass, secondaryClass };
-  };
-
-  const { primaryClass, secondaryClass } = getTypeColors(primaryType);
-  const dynamicPrimaryColorClass = classNames(primaryClass);
   const dynamicSecondaryColorClass = classNames(
     "text-6xl",
     "font-[1000]",
     secondaryClass
   );
 
-  useEffect(() => {
-    if (id < 1281) {
-      preloadPokemonImage(id + 1);
-    }
-  }, [id]);
+  maxPokemonId = 1281;
 
   useEffect(() => {
-    if (data) {
-      setPrimaryType(data.types[0] || "grass");
+    if (id < maxPokemonId) {
+      preloadPokemonImage(id + 1);
+      preloadJapaneseName(id + 1);
     }
-  }, [data]);
+  }, [id]);
 
   if (error) return <p>Error : {error.message}</p>;
   if (!data) return null;

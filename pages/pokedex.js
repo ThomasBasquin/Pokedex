@@ -41,7 +41,7 @@ function Pokedex() {
     <div
       className={`w-screen h-screen bg-${dynamicPrimaryColorClass} tracking-wide`}
     >
-      <ImageGroup id={id} />
+      <ImageGroup id={id} secondaryClass={secondaryClass} />
       <div className="flex flex-shrink justify-between mt-7">
         <PokemonName id={id} />
         <CapacityButton />

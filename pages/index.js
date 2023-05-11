@@ -4,57 +4,42 @@ import React, { useEffect, useState } from "react";
 import Copyright from "../components/copyright";
 import { iconPreload } from "../hooks/iconPreload";
 
-function App() {
-  const typeList = [
-    "normal",
-    "fighting",
-    "flying",
-    "poison",
-    "ground",
-    "rock",
-    "bug",
-    "ghost",
-    "steel",
-    "fire",
-    "water",
-    "grass",
-    "electric",
-    "psychic",
-    "ice",
-    "dragon",
-    "dark",
-    "fairy",
-  ];
+const MemoizedCopyright = React.memo(Copyright);
 
-  const setWindowHeight = () => {
-    let vh = window.innerHeight * 0.01;
-    document.documentElement.style.setProperty("--vh", `${vh}px`);
-  };
+function App() {
+  const [windowHeight, setWindowHeight] = useState(null);
 
   useEffect(() => {
-    setWindowHeight(); // Définir la hauteur initiale
+    if (typeof window !== "undefined") {
+      const handleResize = () => {
+        setWindowHeight(window.innerHeight * 0.01);
+      };
 
-    window.addEventListener("resize", setWindowHeight); // Mettre à jour la hauteur lors du redimensionnement
+      handleResize();
 
-    // Charger les icônes en arrière-plan après un certain délai
-    const preloadIconsTimeout = setTimeout(() => {
-      iconPreload(typeList);
-    }, 2000); // 2000 ms (2 secondes) de délai, ajustez la valeur en fonction de vos besoins
+      window.addEventListener("resize", handleResize);
 
-    // Supprimer l'écouteur d'événements lors du démontage du composant
-    return () => {
-      window.removeEventListener("resize", setWindowHeight);
-      clearTimeout(preloadIconsTimeout);
-    };
+      const preloadIconsTimeout = setTimeout(() => {
+        iconPreload();
+      }, 1500);
+
+      return () => {
+        window.removeEventListener("resize", handleResize);
+        clearTimeout(preloadIconsTimeout);
+      };
+    }
   }, []);
 
   return (
-    <div className="w-screen h-screen bg-pokemon-bg bg-center bg-no-repeat bg-cover p-0 m-0 align-middle tracking-wide ">
+    <div
+      className="w-screen h-screen bg-pokemon-bg bg-center bg-no-repeat bg-cover p-0 m-0 align-middle tracking-wide "
+      style={windowHeight !== null ? { "--vh": `${windowHeight}px` } : {}}
+    >
       <Image
         src="/assets/Pokedex.png"
         alt="Pokedex"
         width={192}
-        height={192}
+        height={72}
         quality={100}
         className="
         w-64 mx-auto pt-16 
@@ -99,7 +84,7 @@ function App() {
           Cliquer sur la Pokeball pour entrer
         </h2>
       </div>
-      <Copyright />
+      <MemoizedCopyright />
     </div>
   );
 }
