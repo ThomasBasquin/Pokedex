@@ -1,4 +1,5 @@
-import { Link } from "react-router-dom";
+import Link from "next/link";
+import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import Copyright from "../components/copyright";
 import { iconPreload } from "../hooks/iconPreload";
@@ -35,19 +36,26 @@ function App() {
 
     window.addEventListener("resize", setWindowHeight); // Mettre à jour la hauteur lors du redimensionnement
 
-    iconPreload(typeList);
+    // Charger les icônes en arrière-plan après un certain délai
+    const preloadIconsTimeout = setTimeout(() => {
+      iconPreload(typeList);
+    }, 2000); // 2000 ms (2 secondes) de délai, ajustez la valeur en fonction de vos besoins
 
     // Supprimer l'écouteur d'événements lors du démontage du composant
     return () => {
       window.removeEventListener("resize", setWindowHeight);
+      clearTimeout(preloadIconsTimeout);
     };
   }, []);
 
   return (
     <div className="w-screen h-screen bg-pokemon-bg bg-center bg-no-repeat bg-cover p-0 m-0 align-middle tracking-wide ">
-      <img
-        src="assets/Pokedex.png"
+      <Image
+        src="/assets/Pokedex.png"
         alt="Pokedex"
+        width={192}
+        height={192}
+        quality={100}
         className="
         w-64 mx-auto pt-16 
         tab:w-80 tab:pt-11 
@@ -63,15 +71,17 @@ function App() {
       laptop-lg:bottom-10 
       desktop-xl:bottom-16"
       >
-        <Link to="/pokedex">
-          <img
-            src="assets/pokeball.png"
+        <Link href="/pokedex">
+          <Image
+            src="/assets/pokeball.png"
             alt="pokeball"
+            width={96}
+            height={96}
             className="
-            w-24 bottom-12 animate-bounce transition-all duration-200 
-            laptop-sm:w-20 laptop-sm:hover:w-24 laptop-sm:bottom-6 
-            laptop-lg:w-24 laptop-lg:hover:w-28 
-            desktop-xl:w-28 desktop-xl:hover:w-32"
+              w-24 bottom-12 animate-bounce transition-all duration-200 
+              laptop-sm:w-20 laptop-sm:hover:w-24 laptop-sm:bottom-6 
+              laptop-lg:w-24 laptop-lg:hover:w-28 
+              desktop-xl:w-28 desktop-xl:hover:w-32"
           />
         </Link>
         <h2 className="tab:hidden text-white mt-2 font-semibold text-lg hover:text-gray-200 hover:scale-110 hover:tracking-wider hover:cursor-default transition-all duration-200">

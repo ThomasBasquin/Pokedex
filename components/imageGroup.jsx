@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { usePokemonData } from "../hooks/usePokemon";
 import { preloadPokemonImage } from "../services/pokemonImage";
 import classNames from "classnames";
-import "../assets/pokemonColors.css";
+import Image from "next/image";
 
 const ImageGroup = ({ id }) => {
   const [primaryType, setPrimaryType] = useState("grass");
@@ -53,11 +53,23 @@ const ImageGroup = ({ id }) => {
     >
       <p className={dynamicSecondaryColorClass}>{japanesePokemonName}</p>
       <div className="flex flex-row items-start h-56">
-        <img className="w-60  -mt-8 z-10" src={url} alt="pokemon" />
+        <Image
+          className="w-60  -mt-8 z-10"
+          src={url}
+          alt="pokemon"
+          width={240}
+          height={240}
+        />
         <div className="flex flex-col items-center -ml-4 mb-16">
           {types.map((type) => {
             return (
-              <img className="w-20" src={`assets/${type}.png`} alt={type} />
+              <Image
+                className="w-20"
+                src={`/assets/${type}.png`}
+                alt={type}
+                width={80}
+                height={80}
+              />
             );
           })}
         </div>

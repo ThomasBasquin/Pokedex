@@ -1,5 +1,4 @@
 import React from "react";
-import "../assets/pokemonColors.css";
 
 const CapacityButton = ({ color }) => {
   return (

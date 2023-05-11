@@ -1,6 +1,9 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
+  content: [
+    "./pages/**/*.{js,ts,jsx,tsx}",
+    "./components/**/*.{js,ts,jsx,tsx}",
+  ],
   theme: {
     screens: {
       tab: "768px",
@@ -90,7 +93,7 @@ module.exports = {
         nunito: ["nunito", "sans-serif"],
       },
       backgroundImage: {
-        "pokemon-bg": "url('/src/assets/pokemon-background.png')",
+        "pokemon-bg": "url('/assets/pokemon-background.png')",
       },
     },
   },

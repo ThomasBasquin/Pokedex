@@ -1,4 +1,5 @@
-import { Link } from "react-router-dom";
+import Link from "next/link";
+import Image from "next/image";
 import React, { useState, useEffect } from "react";
 import PokemonName from "../components/pokemonName";
 import PokemonInfo from "../components/pokemonInfo";
@@ -6,7 +7,6 @@ import CapacityButton from "../components/capacityButton";
 import ImageGroup from "../components/imageGroup";
 import { preloadPokemonData } from "../services/pokemonApi";
 import { usePokemonData } from "../hooks/usePokemon";
-import "../assets/pokemonColors.css";
 import classNames from "classnames";
 
 function Pokedex() {
