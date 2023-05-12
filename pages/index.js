@@ -27,11 +27,13 @@ function App() {
         });
       };
 
-      preloadIcons();
+      const timeoutId = setTimeout(() => {
+        preloadIcons();
+      }, 1000);
 
       return () => {
         window.removeEventListener("resize", handleResize);
-        clearTimeout(preloadIconsTimeout);
+        clearTimeout(timeoutId);
       };
     }
   }, []);
