@@ -54,6 +54,7 @@ function App() {
         tab:w-80 tab:pt-11 
         laptop-sm:w-80 laptop-sm:pt-10 
         laptop-lg:w-3/12 "
+        priority
       />
 
       <div

@@ -4,6 +4,7 @@ import { preloadPokemonImage } from "../services/pokemonImage";
 import { preloadJapaneseName } from "../services/japaneseName";
 import classNames from "classnames";
 import Image from "next/image";
+import TypeIcon from "./typeIcon";
 
 const ImageGroup = ({ id, secondaryClass }) => {
   const { loading, error, data } = usePokemonData(id);
@@ -46,17 +47,9 @@ const ImageGroup = ({ id, secondaryClass }) => {
           height={240}
         />
         <div className="flex flex-col items-center -ml-4 mb-16">
-          {types.map((type) => {
-            return (
-              <Image
-                className="w-20"
-                src={`/assets/${type}.png`}
-                alt={type}
-                width={80}
-                height={80}
-              />
-            );
-          })}
+          {types.map((type) => (
+            <TypeIcon key={type} type={type} />
+          ))}
         </div>
       </div>
     </div>
