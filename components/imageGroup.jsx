@@ -14,7 +14,7 @@ const ImageGroup = ({ id, secondaryClass }) => {
     secondaryClass
   );
 
-  maxPokemonId = 1281;
+  const maxPokemonId = 1281;
 
   useEffect(() => {
     if (id < maxPokemonId) {
