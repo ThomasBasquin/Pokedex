@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { usePokemonData } from "../hooks/usePokemon";
-import { preloadPokemonImage } from "../services/pokemonImage";
 import { preloadJapaneseName } from "../services/japaneseName";
 import classNames from "classnames";
 import Image from "next/image";
@@ -15,12 +14,13 @@ const ImageGroup = ({ id, secondaryClass }) => {
     secondaryClass
   );
 
-  const maxPokemonId = 1281;
+  const maxPokemonId = 1007;
 
   useEffect(() => {
     if (id < maxPokemonId) {
-      preloadPokemonImage(id + 1);
       preloadJapaneseName(id + 1);
+      preloadJapaneseName(id + 2);
+      preloadJapaneseName(id + 3);
     }
   }, [id]);
 
@@ -30,7 +30,7 @@ const ImageGroup = ({ id, secondaryClass }) => {
   const { japaneseName: japanesePokemonName, types: types } = data;
 
   const paddedId = String(id).padStart(3, "0");
-  const url = `https://assets.pokemon.com/assets/cms2/img/pokedex/full/${paddedId}.png`;
+  const url = `/assets/pokemonImage/${paddedId}.png`;
 
   return (
     <div
@@ -40,11 +40,12 @@ const ImageGroup = ({ id, secondaryClass }) => {
       <p className={dynamicSecondaryColorClass}>{japanesePokemonName}</p>
       <div className="flex flex-row items-start h-56">
         <Image
-          className="w-60  -mt-8 z-10"
+          className="w-60 -mt-8 z-10"
           src={url}
           alt="pokemon"
           width={240}
           height={240}
+          priority
         />
         <div className="flex flex-col items-center -ml-4 mb-16">
           {types.map((type) => (
