@@ -2,7 +2,6 @@ import Link from "next/link";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import Copyright from "../components/copyright";
-import { iconPreload } from "../hooks/iconPreload";
 
 const MemoizedCopyright = React.memo(Copyright);
 
@@ -19,9 +18,16 @@ function App() {
 
       window.addEventListener("resize", handleResize);
 
-      const preloadIconsTimeout = setTimeout(() => {
-        iconPreload();
-      }, 1500);
+      const preloadIcons = async () => {
+        await fetch("/api/preloadIcons", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+      };
+
+      preloadIcons();
 
       return () => {
         window.removeEventListener("resize", handleResize);
