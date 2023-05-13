@@ -25,3 +25,5 @@ jobs:
         run: |
           rsync -e 'sshpass -p ${{ env.PASSWORD }} ssh' -avz --delete --exclude '.git' --exclude '.github' ./ ${{ env.USER }}@${{ env.HOST }}:/var/www/Pokedex
           sshpass -p ${{ env.PASSWORD }} ssh ${{ env.USER }}@${{ env.HOST }} 'cd /var/www/Pokedex && docker-compose down && docker-compose build && docker-compose up -d'
+
+# test github actions
