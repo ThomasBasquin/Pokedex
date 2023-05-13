@@ -23,7 +23,5 @@ jobs:
           USER: root
           PASSWORD: ${{ secrets.SSH_PASSWORD }}
         run: |
-          rsync -e 'sshpass -p ${{ env.PASSWORD }} ssh' -avz --delete --exclude '.git' --exclude '.github' ./ ${{ env.USER }}@${{ env.HOST }}:/var/www/Pokedex
-          sshpass -p ${{ env.PASSWORD }} ssh ${{ env.USER }}@${{ env.HOST }} 'cd /var/www/Pokedex && docker-compose down && docker-compose build && docker-compose up -d'
-
-# test github actions
+          rsync -e 'sshpass -p ${{ env.PASSWORD }} ssh -o StrictHostKeyChecking=no -vvv' -avz --delete --exclude '.git' --exclude '.github' ./ ${{ env.USER }}@${{ env.HOST }}:/var/www/Pokedex
+          sshpass -p ${{ env.PASSWORD }} ssh -o StrictHostKeyChecking=no -vvv ${{ env.USER }}@${{ env.HOST }} 'cd /var/www/Pokedex && docker-compose down && docker-compose build && docker-compose up -d'
