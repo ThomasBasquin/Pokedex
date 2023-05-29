@@ -3,13 +3,13 @@ import { usePokemonData } from "../hooks/usePokemon";
 import classNames from "classnames";
 import Image from "next/image";
 
-const ImageGroup = ({ id, secondaryClass }) => {
+const ImageGroup = ({ id, color }) => {
   const { loading, error, data } = usePokemonData(id);
 
   const dynamicSecondaryColorClass = classNames(
     "text-6xl",
     "font-[1000]",
-    secondaryClass
+    color
   );
 
   if (error) return <p>Error : {error.message}</p>;

@@ -28,25 +28,32 @@ export default function Pokedex({ initialPokemonData }) {
     const primaryClass = `primary${
       type.charAt(0).toUpperCase() + type.slice(1)
     }`;
-    const secondaryClass = `secondary${
+    const secondaryTextClass = `secondaryText${
       type.charAt(0).toUpperCase() + type.slice(1)
     }`;
-    return { primaryClass, secondaryClass };
+    const secondaryBackgroundClass = `secondaryBackground${
+      type.charAt(0).toUpperCase() + type.slice(1)
+    }`;
+    return { primaryClass, secondaryTextClass, secondaryBackgroundClass };
   };
 
-  const { primaryClass, secondaryClass } = getTypeColors(primaryType);
-  const dynamicPrimaryColorClass = classNames(primaryClass);
+  const { primaryClass, secondaryTextClass, secondaryBackgroundClass } =
+    getTypeColors(primaryType);
+  const dynamicPrimaryColorClass = classNames(
+    "w-screen",
+    "h-screen",
+    "tracking-wide",
+    primaryClass
+  );
 
   // ------------------------------------------------------
 
   return (
-    <div
-      className={`w-screen h-screen bg-${dynamicPrimaryColorClass} tracking-wide`}
-    >
-      <ImageGroup id={id} secondaryClass={secondaryClass} />
+    <div className={dynamicPrimaryColorClass}>
+      <ImageGroup id={id} color={secondaryTextClass} />
       <div className="flex flex-shrink justify-between mt-7">
         <PokemonName id={id} />
-        <CapacityButton />
+        <CapacityButton color={secondaryBackgroundClass} />
       </div>
       <PokemonInfo id={id} />
       <button

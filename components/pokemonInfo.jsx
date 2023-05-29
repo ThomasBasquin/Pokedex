@@ -13,15 +13,17 @@ const pokemonInfo = ({ id }) => {
 
   return (
     <div className="mt-9 flex flex-col justify-between h-36 ">
-      <p className="text-base ml-5 text-white mr-5 tracking-normal">
-        <span className="">{pokemonDescription}</span>
-      </p>
+      <div className="flex justify-center">
+        <p className="text-[0.940rem] w-5/6 text-white tracking-normal">
+          <span className="">{pokemonDescription}</span>
+        </p>
+      </div>
       <div className="flex flex-col text-right mr-5">
-        <p className="text-base ml-3 text-white tracking-wide">
+        <p className="text-[0.940rem] ml-3 text-white tracking-wide">
           <span className="font-bold mr-1">Taille : </span>{" "}
           <span className="font-normal">{pokemonHeight / 10} m</span>
         </p>
-        <p className="text-base ml-3 text-white tracking-wide">
+        <p className="text-[0.940rem] ml-3 text-white tracking-wide">
           <span className="font-bold mr-1">Poids : </span>{" "}
           <span className="font-normal">{pokemonWeight / 10} kg</span>
         </p>
