@@ -5,14 +5,16 @@ import PokemonName from "../components/pokemonName";
 import PokemonInfo from "../components/pokemonInfo";
 import CapacityButton from "../components/capacityButton";
 import ImageGroup from "../components/imageGroup";
-import { preloadPokemonData } from "../services/pokemonApi";
+import { getPokemonData, preloadPokemonData } from "../services/pokemonApi";
 import { usePokemonData } from "../hooks/usePokemon";
 import classNames from "classnames";
 
-function Pokedex() {
+export default function Pokedex({ initialPokemonData }) {
   const [id, setId] = useState(1);
-  const [primaryType, setPrimaryType] = useState("grass");
-  const { loading, error, data } = usePokemonData(id);
+  const [primaryType, setPrimaryType] = useState(
+    initialPokemonData.types[0] || "grass"
+  );
+  const { loading, error, data = initialPokemonData } = usePokemonData(id);
 
   // --------------------------- Type Color ---------------------------
 
@@ -63,4 +65,12 @@ function Pokedex() {
   );
 }
 
-export default Pokedex;
+export async function getStaticProps() {
+  const initialPokemonData = await getPokemonData(1);
+
+  return {
+    props: {
+      initialPokemonData,
+    },
+  };
+}

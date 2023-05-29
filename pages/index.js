@@ -18,19 +18,6 @@ function App() {
 
       window.addEventListener("resize", handleResize);
 
-      const preloadIcons = async () => {
-        await fetch("/api/preloadIcons", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        });
-      };
-
-      const timeoutId = setTimeout(() => {
-        preloadIcons();
-      }, 1000);
-
       return () => {
         window.removeEventListener("resize", handleResize);
         clearTimeout(timeoutId);
