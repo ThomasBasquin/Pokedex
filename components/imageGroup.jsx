@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { usePokemonData } from "../hooks/usePokemon";
-import { preloadJapaneseName } from "../services/japaneseName";
 import classNames from "classnames";
 import Image from "next/image";
 
@@ -12,16 +11,6 @@ const ImageGroup = ({ id, secondaryClass }) => {
     "font-[1000]",
     secondaryClass
   );
-
-  const maxPokemonId = 1007;
-
-  useEffect(() => {
-    if (id < maxPokemonId) {
-      preloadJapaneseName(id + 1);
-      preloadJapaneseName(id + 2);
-      preloadJapaneseName(id + 3);
-    }
-  }, [id]);
 
   if (error) return <p>Error : {error.message}</p>;
   if (!data) return null;
@@ -47,9 +36,10 @@ const ImageGroup = ({ id, secondaryClass }) => {
           priority
         />
         <div className="flex flex-col items-center -ml-4 mb-16">
-          {types.map((type) => {
+          {types.map((type, index) => {
             return (
               <Image
+                key={index}
                 className="w-20"
                 src={`/assets/${type}.png`}
                 alt={type}

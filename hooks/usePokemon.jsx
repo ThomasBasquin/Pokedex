@@ -1,12 +1,11 @@
 import { useState, useEffect } from "react";
 import { getPokemonData } from "../services/pokemonApi";
+import pokemonCache from "../services/pokemonCache";
 
 export const usePokemonData = (id) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [data, setData] = useState(null);
-
-  const pokemonCache = {};
 
   useEffect(() => {
     const fetchPokemon = async () => {

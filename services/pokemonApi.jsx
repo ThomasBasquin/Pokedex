@@ -1,4 +1,5 @@
 import axios from "axios";
+import pokemonCache from "./pokemonCache";
 
 const API_BASE_URL = "https://pokeapi.co/api/v2";
 
@@ -14,7 +15,10 @@ const getPokemonInfo = async (id) => {
 
 export const preloadPokemonData = async (id) => {
   try {
-    await getPokemonData(id);
+    if (!pokemonCache[id]) {
+      const pokemonData = await getPokemonData(id);
+      pokemonCache[id] = pokemonData;
+    }
   } catch (err) {
     console.error(`Error preloading Pokemon data for ID: ${id}`, err);
   }
