@@ -1,0 +1,27 @@
+name: Deploy to DigitalOcean
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Install sshpass
+        run: |
+          sudo apt-get install -y sshpass
+
+      - name: Deploy to DigitalOcean
+        env:
+          HOST: 207.154.194.125
+          USER: root
+          PASSWORD: ${{ secrets.SSH_PASSWORD }}
+        run: |
+          rsync -e 'sshpass -p ${{ env.PASSWORD }} ssh -o StrictHostKeyChecking=no -vvv' -avz --delete --exclude '.git' --exclude '.github' ./ ${{ env.USER }}@${{ env.HOST }}:/var/www/Pokedex
+          sshpass -p ${{ env.PASSWORD }} ssh -o StrictHostKeyChecking=no -vvv ${{ env.USER }}@${{ env.HOST }} 'cd /var/www/Pokedex && docker-compose down && docker-compose build && docker-compose up -d'
