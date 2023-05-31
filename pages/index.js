@@ -8,6 +8,7 @@ const MemoizedCopyright = React.memo(Copyright);
 function App() {
   const [windowHeight, setWindowHeight] = useState(null);
 
+  // Set vh variable for mobile devices
   useEffect(() => {
     if (typeof window !== "undefined") {
       const handleResize = () => {
@@ -22,6 +23,38 @@ function App() {
         window.removeEventListener("resize", handleResize);
       };
     }
+  }, []);
+
+  // Preload types images in http cache
+  useEffect(() => {
+    const images = [
+      "/assets/bug.png",
+      "/assets/dark.png",
+      "/assets/dragon.png",
+      "/assets/electric.png",
+      "/assets/fairy.png",
+      "/assets/fighting.png",
+      "/assets/fire.png",
+      "/assets/flying.png",
+      "/assets/ghost.png",
+      "/assets/grass.png",
+      "/assets/ground.png",
+      "/assets/ice.png",
+      "/assets/normal.png",
+      "/assets/poison.png",
+      "/assets/psychic.png",
+      "/assets/rock.png",
+      "/assets/steel.png",
+      "/assets/water.png",
+    ];
+
+    images.forEach((image) => {
+      const link = document.createElement("link");
+      link.href = image;
+      link.rel = "prefetch";
+      link.as = "image";
+      document.head.appendChild(link);
+    });
   }, []);
 
   return (
