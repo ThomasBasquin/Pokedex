@@ -12,7 +12,7 @@ const pokemonInfo = ({ id }) => {
   const { poids: pokemonWeight } = data;
 
   return (
-    <div className="mt-9 flex flex-col justify-between h-36 ">
+    <div className="mt-9 flex flex-col justify-between h-32 ">
       <div className="flex justify-center">
         <p className="text-[0.940rem] w-5/6 text-white tracking-normal">
           <span className="">{pokemonDescription}</span>

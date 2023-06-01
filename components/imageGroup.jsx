@@ -1,10 +1,30 @@
-import React, { useEffect, useState } from "react";
+import React, { use, useEffect, useState } from "react";
 import { usePokemonData } from "../hooks/usePokemon";
 import classNames from "classnames";
+import Link from "next/link";
 import Image from "next/image";
 
 const ImageGroup = ({ id, color }) => {
   const { loading, error, data } = usePokemonData(id);
+
+  useEffect(() => {
+    const nextId = id + 1;
+
+    if (nextId <= 1008) {
+      const nextPaddedId = String(nextId).padStart(3, "0");
+      const nextPokemonImageUrl = `/assets/pokemonImage/${nextPaddedId}.png`;
+
+      const link = document.createElement("link");
+      link.href = nextPokemonImageUrl;
+      link.rel = "prefetch";
+      link.as = "image";
+      document.head.appendChild(link);
+
+      return () => {
+        document.head.removeChild(link);
+      };
+    }
+  }, [id]);
 
   const dynamicSecondaryColorClass = classNames(
     "text-6xl",
@@ -18,7 +38,7 @@ const ImageGroup = ({ id, color }) => {
   const { japaneseName: japanesePokemonName, types: types } = data;
 
   const paddedId = String(id).padStart(3, "0");
-  const url = `/assets/pokemonImage/${paddedId}.png`;
+  const pokemonImageUrl = `/assets/pokemonImage/${paddedId}.png`;
 
   return (
     <div
@@ -29,7 +49,7 @@ const ImageGroup = ({ id, color }) => {
       <div className="flex flex-row items-start h-56">
         <Image
           className="w-60 -mt-8 z-10"
-          src={url}
+          src={pokemonImageUrl}
           alt="pokemon"
           width={240}
           height={240}

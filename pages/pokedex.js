@@ -8,6 +8,7 @@ import ImageGroup from "../components/imageGroup";
 import { getPokemonData, preloadPokemonData } from "../services/pokemonApi";
 import { usePokemonData } from "../hooks/usePokemon";
 import classNames from "classnames";
+import PokemonList from "../components/pokemonList";
 
 export default function Pokedex({ initialPokemonData }) {
   const [id, setId] = useState(1);
@@ -46,28 +47,24 @@ export default function Pokedex({ initialPokemonData }) {
     primaryClass
   );
 
+  // handle for list pokemon
+  const handlePokemonSelect = (pokemonId) => {
+    setId(pokemonId);
+  };
+
   // ------------------------------------------------------
 
   return (
-    <div className={dynamicPrimaryColorClass}>
-      <ImageGroup id={id} color={secondaryTextClass} />
-      <div className="flex flex-shrink justify-between mt-7">
-        <PokemonName id={id} />
-        <CapacityButton color={secondaryBackgroundClass} />
+    <div className="h-full fixed">
+      <div className={dynamicPrimaryColorClass}>
+        <ImageGroup id={id} color={secondaryTextClass} />
+        <div className="flex flex-shrink justify-between mt-7">
+          <PokemonName id={id} />
+          <CapacityButton color={secondaryBackgroundClass} />
+        </div>
+        <PokemonInfo id={id} />
+        <PokemonList selectedId={id} onPokemonSelect={handlePokemonSelect} />
       </div>
-      <PokemonInfo id={id} />
-      <button
-        onClick={() => {
-          if (id < 1281) {
-            setId(id + 1);
-          }
-          if (id < 1280) {
-            preloadPokemonData(id + 2);
-          }
-        }}
-      >
-        Pokemon suivant
-      </button>
     </div>
   );
 }
