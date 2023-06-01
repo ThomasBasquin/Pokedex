@@ -20,17 +20,6 @@
   /* 2 */
 }
 
-/* Pour les navigateurs basés sur Webkit (Chrome, Safari et Opera) */
-.scrollbar-hide::-webkit-scrollbar {
-  display: none;
-}
-
-/* Pour IE, Edge et Firefox */
-.scrollbar-hide {
-  -ms-overflow-style: none; /* IE et Edge */
-  scrollbar-width: none; /* Firefox */
-}
-
 ::before,
 ::after {
   --tw-content: "";

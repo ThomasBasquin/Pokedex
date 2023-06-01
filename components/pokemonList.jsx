@@ -12,7 +12,7 @@ const PokemonList = ({ selectedId, onPokemonSelect }) => {
       className={`text-white text-[0.940rem] ${
         pokemons[index] === selectedId
           ? "font-bold"
-          : "font-normal text-gray-300"
+          : "font-normal text-gray-300 text-opacity-60"
       }`}
     >
       {pokemons[index]}
@@ -20,8 +20,9 @@ const PokemonList = ({ selectedId, onPokemonSelect }) => {
   );
 
   return (
-    <div className="flex fixed justify-center w-full h-10 overflow-x-scroll bottom-5">
-      <div className="w-3/4">
+    <div className="flex fixed justify-center w-full h-10 overflow-x-scroll bottom-3">
+      <div>left</div>
+      <div className=" w-8/12 pokemon-list-container">
         <AutoSizer>
           {({ height, width }) => (
             <List
