@@ -6,14 +6,14 @@ const CapacityButton = ({ color }) => {
     "rounded-full",
     "text-white",
     "py-3",
-    "px-5",
+    "px-7",
     "shadow-sm",
     color
   );
 
   return (
-    <button type="button" className="tracking-wide font-normal text-base mr-4">
-      <span className={dynamicSecondaryColorClass}>Ses capacités</span>
+    <button type="button" className="tracking-wide font-normal text-base mr-5">
+      <span className={dynamicSecondaryColorClass}>Capacités</span>
       <span className="hidden tab:inline">Voir ses capacités</span>
     </button>
   );

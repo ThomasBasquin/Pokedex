@@ -9,7 +9,7 @@ const PokemonList = ({ selectedId, onPokemonSelect }) => {
     <div
       onClick={() => onPokemonSelect(pokemons[index])}
       style={{ ...style }}
-      className={`text-white text-[0.940rem] ${
+      className={`flex text-white text-[0.940rem] text-center items-center ${
         pokemons[index] === selectedId
           ? "font-bold"
           : "font-normal text-gray-300 text-opacity-60"
@@ -20,8 +20,13 @@ const PokemonList = ({ selectedId, onPokemonSelect }) => {
   );
 
   return (
-    <div className="flex fixed justify-center w-full h-10 overflow-x-scroll bottom-3">
-      <div>left</div>
+    <div className="flex fixed justify-center item-center w-full h-8 overflow-x-scroll bottom-5">
+      <div
+        className="text-white text-xl mr-6"
+        onClick={() => onPokemonSelect(selectedId - 1)}
+      >
+        &lt;
+      </div>
       <div className=" w-8/12 pokemon-list-container">
         <AutoSizer>
           {({ height, width }) => (
@@ -37,7 +42,12 @@ const PokemonList = ({ selectedId, onPokemonSelect }) => {
           )}
         </AutoSizer>
       </div>
-      <div>right</div>
+      <div
+        className="text-white text-xl ml-6"
+        onClick={() => onPokemonSelect(selectedId + 1)}
+      >
+        &gt;
+      </div>
     </div>
   );
 };

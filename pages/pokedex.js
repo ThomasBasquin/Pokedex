@@ -12,6 +12,7 @@ import PokemonList from "../components/pokemonList";
 
 export default function Pokedex({ initialPokemonData }) {
   const [id, setId] = useState(1);
+  const listRef = React.useRef(null);
   const [primaryType, setPrimaryType] = useState(
     initialPokemonData.types[0] || "grass"
   );
