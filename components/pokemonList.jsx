@@ -37,6 +37,7 @@ const PokemonList = ({ selectedId, onPokemonSelect }) => {
           )}
         </AutoSizer>
       </div>
+      <div>right</div>
     </div>
   );
 };
