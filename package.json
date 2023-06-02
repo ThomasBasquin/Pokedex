@@ -9,12 +9,14 @@
     "start": "next start"
   },
   "dependencies": {
+    "animate.css": "^4.1.1",
     "axios": "^1.4.0",
     "classnames": "^2.3.2",
     "next": "^13.4.1",
     "node-fetch": "^3.3.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-icons": "^4.9.0",
     "react-router-dom": "^6.8.2",
     "react-spring": "^9.7.1",
     "react-virtualized-auto-sizer": "^1.0.19",
