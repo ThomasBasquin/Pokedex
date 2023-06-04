@@ -10,7 +10,6 @@ Ce projet est une application web basée sur React et Next.js qui permet aux uti
 - Affichage des noms japonais des Pokémon
 - Affichage des icônes de type pour chaque Pokémon
 - Couleurs personnalisées pour chaque type de Pokémon
-- Préchargement et stockage des icônes de type dans Redis
 - Optimisation du code en suivant les principes de programmation tels que SOLID, DRY, KISS et d'autres
 
 ## Installation et utilisation
