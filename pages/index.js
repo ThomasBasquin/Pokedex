@@ -1,9 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
-import Copyright from "../components/copyright";
-
-const MemoizedCopyright = React.memo(Copyright);
 
 function App() {
   const [windowHeight, setWindowHeight] = useState(null);
@@ -69,7 +66,7 @@ function App() {
         height={72}
         quality={100}
         className="
-        w-64 mx-auto pt-16 
+        w-72 mx-auto pt-16 
         tab:w-80 tab:pt-11 
         laptop-sm:w-80 laptop-sm:pt-10 
         laptop-lg:w-3/12 "
@@ -97,7 +94,7 @@ function App() {
               desktop-xl:w-28 desktop-xl:hover:w-32"
           />
         </Link>
-        <h2 className="tab:hidden text-white mt-2 font-semibold text-lg hover:text-gray-200 hover:scale-110 hover:tracking-wider hover:cursor-default transition-all duration-200">
+        <h2 className="tab:hidden text-white mt-2 font-semibold text-base hover:text-gray-200 hover:scale-110 hover:tracking-wider hover:cursor-default transition-all duration-200">
           Appuyer sur la Pokeball pour entrer
         </h2>
         <h2
@@ -112,7 +109,6 @@ function App() {
           Cliquer sur la Pokeball pour entrer
         </h2>
       </div>
-      <MemoizedCopyright />
     </div>
   );
 }
