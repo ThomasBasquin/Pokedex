@@ -1,8 +1,19 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import classNames from "classnames";
 
 const CapacityButton = ({ color }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isRendered, setIsRendered] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsRendered(true);
+    }, 1);
+
+    return () => {
+      clearTimeout(timer);
+    };
+  }, []);
 
   const dynamicSecondaryColorClass = classNames(
     "rounded-full",
@@ -21,12 +32,25 @@ const CapacityButton = ({ color }) => {
     setIsOpen(false);
   }
 
+  const buttonClasses = classNames(
+    "tracking-wide",
+    "font-normal",
+    "text-base",
+    "mr-5",
+    "transition-transform",
+    "duration-100",
+    {
+      "transform scale-0": !isRendered, // Appliquer l'échelle 0 si le bouton n'est pas encore rendu
+      "active:scale-100": isRendered, // Appliquer la transformation d'échelle normale lorsque le bouton est rendu
+    }
+  );
+
   return (
     <>
       <button
         type="button"
         onClick={handleClick}
-        className="tracking-wide font-normal text-base mr-5 transform active:scale-95 transition-transform"
+        className={buttonClasses}
         style={{ WebkitTapHighlightColor: "transparent" }}
       >
         <span className={dynamicSecondaryColorClass}>Capacités</span>

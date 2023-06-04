@@ -93,7 +93,7 @@ module.exports = {
         nunito: ["nunito", "sans-serif"],
       },
       backgroundImage: {
-        "pokemon-bg": "url('/assets/pokemon-background.png')",
+        "pokemon-bg": "url('/assets/pokemon-background.webp')",
       },
     },
   },

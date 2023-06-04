@@ -42,8 +42,10 @@ export default function Pokedex({ initialPokemonData }) {
   const { primaryClass, secondaryTextClass, secondaryBackgroundClass } =
     getTypeColors(primaryType);
   const dynamicPrimaryColorClass = classNames(
-    "w-screen",
+    "flex",
+    "flex-col",
     "h-screen",
+    "w-screen",
     "tracking-wide",
     primaryClass
   );
