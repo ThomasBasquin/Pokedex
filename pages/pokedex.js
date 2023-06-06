@@ -17,7 +17,7 @@ export default function Pokedex({ initialPokemonData }) {
   const [primaryType, setPrimaryType] = useState(
     initialPokemonData.types[0] || "grass"
   );
-  const [direction, setDirection] = useState(null);
+  const [direction, setDirection] = useState("right");
   const { loading, error, data = initialPokemonData } = usePokemonData(id);
 
   // --------------------------- Type Color ---------------------------
@@ -90,12 +90,22 @@ export default function Pokedex({ initialPokemonData }) {
   return (
     <div className="h-full fixed">
       <div className={dynamicPrimaryColorClass}>
+        {loading && (
+          <div className="fixed top-0 left-0 w-screen h-screen flex items-center justify-center">
+            <Image
+              src="/assets/loading.gif"
+              width={250}
+              height={250}
+              className=""
+            />
+          </div>
+        )}
         {transitions((style, i) => (
           <animated.div style={style}>
             <ImageGroup id={i} color={secondaryTextClass} />
             <div className="flex flex-shrink justify-between mt-7">
               <PokemonName id={id} />
-              <CapacityButton color={secondaryBackgroundClass} />
+              {!loading && <CapacityButton color={secondaryBackgroundClass} />}
             </div>
             <PokemonInfo id={id} />
           </animated.div>

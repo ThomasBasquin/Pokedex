@@ -3,17 +3,6 @@ import classNames from "classnames";
 
 const CapacityButton = ({ color }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [isRendered, setIsRendered] = useState(false);
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsRendered(true);
-    }, 80);
-
-    return () => {
-      clearTimeout(timer);
-    };
-  }, []);
 
   const dynamicSecondaryColorClass = classNames(
     "rounded-full",
@@ -39,10 +28,7 @@ const CapacityButton = ({ color }) => {
     "mr-5",
     "transition-transform",
     "duration-100   ",
-    {
-      "transform scale-0": !isRendered, // Appliquer l'échelle 0 si le bouton n'est pas encore rendu
-      "active:scale-95": isRendered, // Appliquer la transformation d'échelle normale lorsque le bouton est rendu
-    }
+    "active:scale-95"
   );
 
   return (
