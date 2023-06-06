@@ -49,7 +49,8 @@ export default function Pokedex({ initialPokemonData }) {
     "h-screen",
     "w-screen",
     "tracking-wide",
-    primaryClass
+    primaryClass,
+    "backgroundFade"
   );
 
   // handle for list pokemon
@@ -60,22 +61,30 @@ export default function Pokedex({ initialPokemonData }) {
 
   const transitions = useTransition(id, {
     from: {
+      position: "absolute",
       opacity: 0,
       transform:
         direction === "right"
           ? "translate3d(100%,0,0)"
           : "translate3d(-100%,0,0)",
     },
-    enter: { opacity: 1, transform: "translate3d(0%,0,0)" },
+    enter: {
+      position: "absolute",
+      opacity: 1,
+      transform: "translate3d(0%,0,0)",
+    },
     leave: {
+      position: "absolute",
       opacity: 0,
       transform:
         direction === "right"
           ? "translate3d(-50%,0,0)"
           : "translate3d(50%,0,0)",
     },
+    config: {
+      duration: 300,
+    },
   });
-
   // ------------------------------------------------------
 
   return (
@@ -95,20 +104,6 @@ export default function Pokedex({ initialPokemonData }) {
       <PokemonList selectedId={id} onPokemonSelect={handlePokemonSelect} />
     </div>
   );
-
-  // return (
-  //   <div className="h-full fixed">
-  //     <div className={dynamicPrimaryColorClass}>
-  //       <ImageGroup id={id} color={secondaryTextClass} />
-  //       <div className="flex flex-shrink justify-between mt-7">
-  //         <PokemonName id={id} />
-  //         <CapacityButton color={secondaryBackgroundClass} />
-  //       </div>
-  //       <PokemonInfo id={id} />
-  //       <PokemonList selectedId={id} onPokemonSelect={handlePokemonSelect} />
-  //     </div>
-  //   </div>
-  // );
 }
 
 export async function getStaticProps() {
