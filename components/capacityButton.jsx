@@ -8,7 +8,7 @@ const CapacityButton = ({ color }) => {
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsRendered(true);
-    }, 1);
+    }, 80);
 
     return () => {
       clearTimeout(timer);
