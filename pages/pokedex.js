@@ -80,18 +80,18 @@ export default function Pokedex({ initialPokemonData }) {
 
   return (
     <div className="h-full fixed">
-      {transitions((style, i) => (
-        <animated.div style={style}>
-          <div className={dynamicPrimaryColorClass}>
+      <div className={dynamicPrimaryColorClass}>
+        {transitions((style, i) => (
+          <animated.div style={style}>
             <ImageGroup id={i} color={secondaryTextClass} />
             <div className="flex flex-shrink justify-between mt-7">
-              <PokemonName id={i} />
+              <PokemonName id={id} />
               <CapacityButton color={secondaryBackgroundClass} />
             </div>
-            <PokemonInfo id={i} />
-          </div>
-        </animated.div>
-      ))}
+            <PokemonInfo id={id} />
+          </animated.div>
+        ))}
+      </div>
       <PokemonList selectedId={id} onPokemonSelect={handlePokemonSelect} />
     </div>
   );
