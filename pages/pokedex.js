@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, use } from "react";
 import PokemonName from "../components/pokemonName";
 import PokemonInfo from "../components/pokemonInfo";
 import CapacityButton from "../components/capacityButton";
@@ -10,6 +10,7 @@ import { usePokemonData } from "../hooks/usePokemon";
 import classNames from "classnames";
 import PokemonList from "../components/pokemonList";
 import { useTransition, animated } from "react-spring";
+import { useSwipeable } from "react-swipeable";
 
 export default function Pokedex({ initialPokemonData }) {
   const [id, setId] = useState(1);
@@ -59,6 +60,23 @@ export default function Pokedex({ initialPokemonData }) {
     setId(pokemonId);
   };
 
+  const handleSwipe = useSwipeable({
+    onSwipedLeft: () => {
+      if (id < 1007) {
+        setDirection("right");
+        setId(id + 1);
+      }
+    },
+    onSwipedRight: () => {
+      if (id > 1) {
+        setDirection("left");
+        setId(id - 1);
+      }
+    },
+    preventDefaultTouchmoveEvent: true,
+    trackMouse: true,
+  });
+
   const transitions = useTransition(id, {
     from: {
       position: "absolute",
@@ -89,7 +107,7 @@ export default function Pokedex({ initialPokemonData }) {
 
   return (
     <div className="h-full fixed">
-      <div className={dynamicPrimaryColorClass}>
+      <div {...handleSwipe} className={dynamicPrimaryColorClass}>
         {loading && (
           <div className="fixed top-0 left-0 w-screen h-screen flex items-center justify-center">
             <Image

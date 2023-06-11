@@ -1,5 +1,6 @@
 import React from "react";
 import { usePokemonData } from "../hooks/usePokemon";
+import classNames from "classnames";
 
 const PokemonName = ({ id, color }) => {
   const { loading, error, data } = usePokemonData(id);
@@ -9,8 +10,16 @@ const PokemonName = ({ id, color }) => {
 
   const { name: pokemonName } = data;
 
+  const nameDivClasses = classNames(
+    "text-lg",
+    "ml-5",
+    "text-white",
+    "tracking-wide",
+    "fade"
+  );
+
   return (
-    <p className="text-lg ml-5 text-white tracking-wide">
+    <p className={nameDivClasses}>
       <span className="font-normal">#{id}</span>{" "}
       <span className="font-bold">- {pokemonName}</span>
     </p>

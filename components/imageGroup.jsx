@@ -29,6 +29,7 @@ const ImageGroup = ({ id, color }) => {
   const dynamicSecondaryColorClass = classNames(
     "text-6xl",
     "font-[1000]",
+    "backgroundFade",
     color
   );
 

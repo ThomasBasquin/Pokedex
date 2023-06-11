@@ -23,19 +23,21 @@
 }
 
 .primaryGrass {
-  background-color: #4aa63a;
+  /* background-color: #4aa63a; */
+  background-color: #3aa938;
 }
 
 .secondaryTextGrass {
-  color: #198418;
+  /* color: #198418; */
+  color: #157915;
 }
 
 .secondaryBackgroundGrass {
-  background-color: #198418;
+  background-color: #157915;
 }
 
 .primaryElectric {
-  background-color: #ffc000;
+  background-color: #fabc00;
 }
 
 .secondaryTextElectric {
@@ -44,6 +46,7 @@
 
 .secondaryBackgroundElectric {
   background-color: #fff1ce;
+  color: #978000;
 }
 
 .primaryPsychic {
@@ -59,15 +62,15 @@
 }
 
 .primaryIce {
-  background-color: #3dcdf0;
+  background-color: #32afcf;
 }
 
 .secondaryTextIce {
-  color: #07a1c7;
+  color: #0587a8;
 }
 
 .secondaryBackgroundIce {
-  background-color: #07a1c7;
+  background-color: #0587a8;
 }
 
 .primaryDragon {
@@ -95,7 +98,7 @@
 }
 
 .primaryFairy {
-  background-color: #f280d9;
+  background-color: #e698d5;
 }
 
 .secondaryTextFairy {
@@ -143,7 +146,7 @@
 }
 
 .primaryPoison {
-  background-color: #8c338c;
+  background-color: #9c389c;
 }
 
 .secondaryTextPoison {

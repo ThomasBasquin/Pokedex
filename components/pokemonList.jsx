@@ -53,6 +53,7 @@ const PokemonList = ({ selectedId, onPokemonSelect }) => {
         onClick={() => {
           if (selectedId > 1) {
             onPokemonSelect(selectedId - 1);
+            preloadPokemonData(selectedId - 2);
           } else {
             handleLeftClick();
           }

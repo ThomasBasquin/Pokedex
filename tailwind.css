@@ -10,5 +10,9 @@ preconnect;
 }
 
 .backgroundFade {
-  transition: background-color 0.35s ease-in-out;
+  transition: background-color 0.45s ease-in-out;
+}
+
+.fade {
+  transition: opacity 0.45s ease-in-out;
 }

@@ -1,5 +1,6 @@
 import React from "react";
 import { usePokemonData } from "../hooks/usePokemon";
+import classNames from "classnames";
 
 const pokemonInfo = ({ id }) => {
   const { loading, error, data } = usePokemonData(id);
@@ -11,8 +12,17 @@ const pokemonInfo = ({ id }) => {
   const { taille: pokemonHeight } = data;
   const { poids: pokemonWeight } = data;
 
+  const descriptionDivClasses = classNames(
+    "mt-9",
+    "flex",
+    "flex-col",
+    "justify-between",
+    "h-32",
+    "fade"
+  );
+
   return (
-    <div className="mt-9 flex flex-col justify-between h-32 ">
+    <div className={descriptionDivClasses}>
       <div className="flex justify-center">
         <p className="text-[0.940rem] w-5/6 text-white tracking-normal">
           <span className="">{pokemonDescription}</span>
