@@ -29,17 +29,15 @@ export default function Pokedex({ initialPokemonData }) {
     }
   }, [data]);
 
+  const capitalize = (type) => type.charAt(0).toUpperCase() + type.slice(1);
+
   const getTypeColors = (type) => {
-    const primaryClass = `primary${
-      type.charAt(0).toUpperCase() + type.slice(1)
-    }`;
-    const secondaryTextClass = `secondaryText${
-      type.charAt(0).toUpperCase() + type.slice(1)
-    }`;
-    const secondaryBackgroundClass = `secondaryBackground${
-      type.charAt(0).toUpperCase() + type.slice(1)
-    }`;
-    return { primaryClass, secondaryTextClass, secondaryBackgroundClass };
+    const capType = capitalize(type);
+    return {
+      primaryClass: `primary${capType}`,
+      secondaryTextClass: `secondaryText${capType}`,
+      secondaryBackgroundClass: `secondaryBackground${capType}`,
+    };
   };
 
   const { primaryClass, secondaryTextClass, secondaryBackgroundClass } =
@@ -65,12 +63,14 @@ export default function Pokedex({ initialPokemonData }) {
       if (id < 1007) {
         setDirection("right");
         setId(id + 1);
+        preloadPokemonData(id + 2);
       }
     },
     onSwipedRight: () => {
       if (id > 1) {
         setDirection("left");
         setId(id - 1);
+        preloadPokemonData(id - 2);
       }
     },
     preventDefaultTouchmoveEvent: true,
@@ -112,6 +112,7 @@ export default function Pokedex({ initialPokemonData }) {
           <div className="fixed top-0 left-0 w-screen h-screen flex items-center justify-center">
             <Image
               src="/assets/loading.gif"
+              alt="loading"
               width={250}
               height={250}
               className=""
