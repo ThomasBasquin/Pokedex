@@ -1,6 +1,5 @@
-import Link from "next/link";
 import Image from "next/image";
-import React, { useState, useEffect, use } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import PokemonName from "../components/pokemonName";
 import PokemonInfo from "../components/pokemonInfo";
 import CapacityButton from "../components/capacityButton";
@@ -12,16 +11,25 @@ import PokemonList from "../components/pokemonList";
 import { useTransition, animated } from "react-spring";
 import { useSwipeable } from "react-swipeable";
 
-export default function Pokedex({ initialPokemonData }) {
+const capitalize = (type) => type.charAt(0).toUpperCase() + type.slice(1);
+
+const getTypeColors = (type) => {
+  const capType = capitalize(type);
+  return {
+    primaryClass: `primary${capType}`,
+    secondaryTextClass: `secondaryText${capType}`,
+    secondaryBackgroundClass: `secondaryBackground${capType}`,
+  };
+};
+
+const Pokedex = ({ initialPokemonData }) => {
   const [id, setId] = useState(1);
-  const listRef = React.useRef(null);
+  const listRef = useRef(null);
   const [primaryType, setPrimaryType] = useState(
     initialPokemonData.types[0] || "grass"
   );
   const [direction, setDirection] = useState("right");
-  const { loading, error, data = initialPokemonData } = usePokemonData(id);
-
-  // --------------------------- Type Color ---------------------------
+  const { loading, data = initialPokemonData } = usePokemonData(id);
 
   useEffect(() => {
     if (data) {
@@ -29,16 +37,28 @@ export default function Pokedex({ initialPokemonData }) {
     }
   }, [data]);
 
-  const capitalize = (type) => type.charAt(0).toUpperCase() + type.slice(1);
-
-  const getTypeColors = (type) => {
-    const capType = capitalize(type);
-    return {
-      primaryClass: `primary${capType}`,
-      secondaryTextClass: `secondaryText${capType}`,
-      secondaryBackgroundClass: `secondaryBackground${capType}`,
-    };
-  };
+  const handleSwipe = useSwipeable({
+    onSwipedLeft: () =>
+      setId((prevId) => {
+        if (prevId < 1007) {
+          setDirection("right");
+          preloadPokemonData(prevId + 2);
+          return prevId + 1;
+        }
+        return prevId;
+      }),
+    onSwipedRight: () =>
+      setId((prevId) => {
+        if (prevId > 1) {
+          setDirection("left");
+          preloadPokemonData(prevId - 2);
+          return prevId - 1;
+        }
+        return prevId;
+      }),
+    preventDefaultTouchmoveEvent: true,
+    trackMouse: true,
+  });
 
   const { primaryClass, secondaryTextClass, secondaryBackgroundClass } =
     getTypeColors(primaryType);
@@ -51,31 +71,6 @@ export default function Pokedex({ initialPokemonData }) {
     primaryClass,
     "backgroundFade"
   );
-
-  // handle for list pokemon
-  const handlePokemonSelect = (pokemonId) => {
-    setDirection(pokemonId > id ? "right" : "left");
-    setId(pokemonId);
-  };
-
-  const handleSwipe = useSwipeable({
-    onSwipedLeft: () => {
-      if (id < 1007) {
-        setDirection("right");
-        setId(id + 1);
-        preloadPokemonData(id + 2);
-      }
-    },
-    onSwipedRight: () => {
-      if (id > 1) {
-        setDirection("left");
-        setId(id - 1);
-        preloadPokemonData(id - 2);
-      }
-    },
-    preventDefaultTouchmoveEvent: true,
-    trackMouse: true,
-  });
 
   const transitions = useTransition(id, {
     from: {
@@ -99,11 +94,8 @@ export default function Pokedex({ initialPokemonData }) {
           ? "translate3d(-50%,0,0)"
           : "translate3d(50%,0,0)",
     },
-    config: {
-      duration: 300,
-    },
+    config: { duration: 300 },
   });
-  // ------------------------------------------------------
 
   return (
     <div className="h-full fixed">
@@ -130,17 +122,14 @@ export default function Pokedex({ initialPokemonData }) {
           </animated.div>
         ))}
       </div>
-      <PokemonList selectedId={id} onPokemonSelect={handlePokemonSelect} />
+      <PokemonList selectedId={id} onPokemonSelect={setId} />
     </div>
   );
-}
+};
+
+export default Pokedex;
 
 export async function getStaticProps() {
   const initialPokemonData = await getPokemonData(1);
-
-  return {
-    props: {
-      initialPokemonData,
-    },
-  };
+  return { props: { initialPokemonData } };
 }
