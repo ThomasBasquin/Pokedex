@@ -98,7 +98,7 @@ const Pokedex = ({ initialPokemonData }) => {
   });
 
   return (
-    <div className="h-full fixed">
+    <div className="h-full fixed flex justify-center">
       <div {...handleSwipe} className={dynamicPrimaryColorClass}>
         {loading && (
           <div className="fixed top-0 left-0 w-screen h-screen flex items-center justify-center">
@@ -122,7 +122,11 @@ const Pokedex = ({ initialPokemonData }) => {
           </animated.div>
         ))}
       </div>
-      <PokemonList selectedId={id} onPokemonSelect={setId} />
+      <PokemonList
+        selectedId={id}
+        onPokemonSelect={setId}
+        setDirection={setDirection}
+      />
     </div>
   );
 };

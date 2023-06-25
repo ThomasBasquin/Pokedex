@@ -2,7 +2,7 @@ import React from "react";
 import { usePokemonData } from "../hooks/usePokemon";
 import classNames from "classnames";
 
-const pokemonInfo = ({ id }) => {
+const PokemonInfo = ({ id }) => {
   const { loading, error, data } = usePokemonData(id);
 
   if (error) return <p>Error : {error.message}</p>;
@@ -42,4 +42,4 @@ const pokemonInfo = ({ id }) => {
   );
 };
 
-export default pokemonInfo;
+export default PokemonInfo;

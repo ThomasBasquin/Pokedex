@@ -4,7 +4,7 @@ import { preloadPokemonData } from "../services/pokemonApi";
 import AutoSizer from "react-virtualized-auto-sizer";
 import classNames from "classnames";
 
-const PokemonList = ({ selectedId, onPokemonSelect }) => {
+const PokemonList = ({ selectedId, onPokemonSelect, setDirection }) => {
   const pokemons = [...Array(1008).keys()].map((i) => i + 1);
   const listRef = React.useRef();
   const [isLeftAnimated, setIsLeftAnimated] = useState(false);
@@ -45,13 +45,23 @@ const PokemonList = ({ selectedId, onPokemonSelect }) => {
   );
 
   return (
-    <div className="flex fixed justify-center w-full overflow-auto bottom-5">
+    <div
+      className="flex fixed justify-center w-11/12 overflow-auto bottom-5 py-1"
+      style={{
+        background: "rgba(0, 0, 0, 0.25)",
+        borderRadius: "16px",
+        boxShadow: "0 4px 23px rgba(0, 0, 0, 0.1)",
+        backdropFilter: "blur(7.4px)",
+        WebkitBackdropFilter: "blur(7.4px)",
+      }}
+    >
       <div
-        className={`text-white text-2xl mr-5 animate__animated transform active:scale-75 transition-transform ${
+        className={`text-white text-2xl mr-5 mb-1 animate__animated transform active:scale-75 transition-transform ${
           isLeftAnimated ? "animate__headShake" : ""
         }`}
         onClick={() => {
           if (selectedId > 1) {
+            setDirection("left");
             onPokemonSelect(selectedId - 1);
             preloadPokemonData(selectedId - 2);
           } else {
@@ -78,11 +88,12 @@ const PokemonList = ({ selectedId, onPokemonSelect }) => {
         </AutoSizer>
       </div>
       <div
-        className={`text-white text-2xl ml-5 animate__animated transform active:scale-75 transition-transform ${
+        className={`text-white text-2xl ml-5 mb-1 animate__animated transform active:scale-75 transition-transform ${
           isRightAnimated ? "animate__headShake" : ""
         }`}
         onClick={() => {
           if (selectedId < 1008) {
+            setDirection("right");
             onPokemonSelect(selectedId + 1);
             preloadPokemonData(selectedId + 2);
           } else {

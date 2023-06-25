@@ -9,7 +9,7 @@ const CapacityButton = ({ color }) => {
     "text-white",
     "py-3",
     "px-7",
-    "shadow-sm",
+    "shadow-lg",
     color
   );
 
