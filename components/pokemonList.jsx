@@ -24,6 +24,22 @@ const PokemonList = ({ selectedId, onPokemonSelect, setDirection }) => {
     }, 10);
   };
 
+  const handleClickOnId = (id) => {
+    if (id !== selectedId) {
+      if (id < selectedId) {
+        setDirection("left");
+        preloadPokemonData(id - 1);
+        preloadPokemonData(id + 1);
+      } else {
+        setDirection("right");
+        preloadPokemonData(id - 1);
+        preloadPokemonData(id + 1);
+      }
+
+      onPokemonSelect(id);
+    }
+  };
+
   useEffect(() => {
     if (listRef.current) {
       listRef.current.scrollToItem(selectedId - 1, "smart");
@@ -32,7 +48,7 @@ const PokemonList = ({ selectedId, onPokemonSelect, setDirection }) => {
 
   const renderRow = ({ index, style }) => (
     <div
-      onClick={() => onPokemonSelect(pokemons[index])}
+      onClick={() => handleClickOnId(pokemons[index])}
       style={{ ...style }}
       className={`flex justify-center text-white text-[0.940rem] items-center ${
         pokemons[index] === selectedId
