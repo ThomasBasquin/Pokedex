@@ -28,7 +28,7 @@ const PokemonInfo = ({ id }) => {
           <span className="">{pokemonDescription}</span>
         </p>
       </div>
-      <div className="flex flex-col text-right mr-5">
+      <div className="flex flex-col text-right mr-5 mt-5">
         <p className="text-[0.940rem] ml-3 text-white tracking-wide">
           <span className="font-bold mr-1">Taille : </span>{" "}
           <span className="font-normal">{pokemonHeight / 10} m</span>

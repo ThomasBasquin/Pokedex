@@ -3,6 +3,16 @@ import pokemonCache from "./pokemonCache";
 
 const API_BASE_URL = "https://pokeapi.co/api/v2";
 
+async function getTranslation(text) {
+  try {
+    const response = await axios.post("/api/translate", { text: text });
+    return response.data.translatedText;
+  } catch (error) {
+    console.error("Error translating text:", error);
+    return null;
+  }
+}
+
 const getPokemonText = async (id) => {
   const response = await axios.get(`${API_BASE_URL}/pokemon-species/${id}`);
   return response.data;
@@ -13,27 +23,27 @@ const getPokemonInfo = async (id) => {
   return response.data;
 };
 
-export const preloadPokemonData = async (id) => {
-  try {
-    if (!pokemonCache[id]) {
-      const pokemonData = await getPokemonData(id);
-      pokemonCache[id] = pokemonData;
-    }
-  } catch (err) {
-    console.error(`Error preloading Pokemon data for ID: ${id}`, err);
-  }
-};
-
 export const getPokemonData = async (id) => {
   const [textData, infoData] = await Promise.all([
     getPokemonText(id),
     getPokemonInfo(id),
   ]);
 
-  // Trouver la première entrée de flavor text en français ou utiliser une chaîne de caractères par défaut si non disponible
-  const frenchFlavorTextEntry = textData.flavor_text_entries.find(
-    (entry) => entry.language.name === "fr"
-  ) || { flavor_text: "Description non disponible" };
+  let frenchFlavorTextEntry;
+
+  // Trouver la première entrée de flavor text en français ou traduire celle en anglais à partir du pokémon 899
+  if (id < 899) {
+    frenchFlavorTextEntry = textData.flavor_text_entries.find(
+      (entry) => entry.language.name === "fr"
+    ) || { flavor_text: "Description non disponible" };
+  } else {
+    frenchFlavorTextEntry = textData.flavor_text_entries.find(
+      (entry) => entry.language.name === "en"
+    ) || { flavor_text: "Description non disponible" };
+    frenchFlavorTextEntry.flavor_text = await getTranslation(
+      frenchFlavorTextEntry.flavor_text
+    );
+  }
 
   // Trouver le nom en français ou utiliser une chaîne de caractères par défaut si non disponible
   const frenchNameEntry = textData.names.find(
@@ -54,4 +64,15 @@ export const getPokemonData = async (id) => {
     taille: infoData.height,
     poids: infoData.weight,
   };
+};
+
+export const preloadPokemonData = async (id) => {
+  try {
+    if (!pokemonCache[id]) {
+      const pokemonData = await getPokemonData(id);
+      pokemonCache[id] = pokemonData;
+    }
+  } catch (err) {
+    console.error(`Error preloading Pokemon data for ID: ${id}`, err);
+  }
 };
