@@ -4,6 +4,7 @@ import PokemonName from "../components/pokemonName";
 import PokemonInfo from "../components/pokemonInfo";
 import CapacityButton from "../components/capacityButton";
 import ImageGroup from "../components/imageGroup";
+import SearchBar from "../components/searchbar";
 import { getPokemonData, preloadPokemonData } from "../services/pokemonApi";
 import { usePokemonData } from "../hooks/usePokemon";
 import classNames from "classnames";
@@ -100,6 +101,7 @@ const Pokedex = ({ initialPokemonData }) => {
   return (
     <div className="h-full fixed flex justify-center">
       <div {...handleSwipe} className={dynamicPrimaryColorClass}>
+        <SearchBar />
         {loading && (
           <div className="fixed top-0 left-0 w-screen h-screen flex items-center justify-center">
             <Image
