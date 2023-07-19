@@ -4,14 +4,20 @@ import Image from "next/image";
 const SearchBar = () => {
   const [search, setSearch] = useState("");
 
+  const searchPokemon = () => {};
+
+  const handleChange = (e) => {
+    setSearch(e.target.value);
+  };
+
   return (
     <div className="z-20 mt-4 h-9 flex w-full justify-center items-center relative">
       <input
         type="text"
         value={search}
         placeholder="Nom ou numéro"
-        onChange={(e) => setSearch(e.target.value)}
-        className="w-4/5 h-full text-white px-4 placeholder:text-gray-300 placeholder:text-opacity-70"
+        onChange={handleChange}
+        className="w-4/5 h-full text-white px-4 placeholder:text-gray-300 placeholder:text-opacity-60"
         style={{
           background: "rgba(0, 0, 0, 0.35)",
           borderRadius: "16px",
