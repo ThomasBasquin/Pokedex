@@ -43,6 +43,7 @@ const SearchBar = ({ id, setId }) => {
         setErrorMessage("Merci d'entrer l'id d'un des 1008 Pokémon");
       } else {
         setId(search);
+        setSearch("");
       }
     }
   };
