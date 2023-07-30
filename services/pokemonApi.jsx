@@ -5,7 +5,10 @@ const API_BASE_URL = "https://pokeapi.co/api/v2";
 
 async function getTranslation(text) {
   try {
-    const response = await axios.post("/api/translate", { text: text });
+    const response = await axios.post("/api/translate", {
+      text: text,
+      source: "en",
+    });
     return response.data.translatedText;
   } catch (error) {
     console.error("Error translating text:", error);
@@ -21,6 +24,10 @@ const getPokemonText = async (id) => {
 const getPokemonInfo = async (id) => {
   const response = await axios.get(`${API_BASE_URL}/pokemon/${id}`);
   return response.data;
+};
+export const getPokemonId = async (name) => {
+  const response = await axios.get(`https://pokeapi.co/api/v2/pokemon/${name}`);
+  return response.data.id;
 };
 
 export const getPokemonData = async (id) => {

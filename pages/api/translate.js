@@ -4,15 +4,16 @@ import { decode } from "he";
 const API_KEY = process.env.TRANSLATE_API_KEY;
 
 export default async (req, res) => {
-  const { text } = req.body;
+  const { text, source } = req.body;
+  const target = source === "en" ? "fr" : "en";
 
   try {
     const response = await axios.post(
       `https://translation.googleapis.com/language/translate/v2?key=${API_KEY}`,
       {
         q: text,
-        source: "en",
-        target: "fr",
+        source: source,
+        target: target,
       }
     );
 
