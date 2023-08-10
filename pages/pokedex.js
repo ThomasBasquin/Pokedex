@@ -41,7 +41,7 @@ const Pokedex = ({ initialPokemonData }) => {
   const handleSwipe = useSwipeable({
     onSwipedLeft: () =>
       setId((prevId) => {
-        if (prevId < 800) {
+        if (prevId < 899) {
           setDirection("right");
           preloadPokemonData(prevId + 2);
           return prevId + 1;
