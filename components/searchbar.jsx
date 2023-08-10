@@ -77,7 +77,7 @@ const SearchBar = ({ id, setId }) => {
           className={`transition-border-color duration-500 border w-4/5 h-full text-white px-4 placeholder:text-gray-300 placeholder:text-opacity-60 ${
             errorMessageIsVisible
               ? "border-red-600 border-2"
-              : "border-transparent"
+              : "border-transparent border-0"
           }}`}
           style={{
             background: "rgba(0, 0, 0, 0.35)",
