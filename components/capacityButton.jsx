@@ -39,7 +39,7 @@ const CapacityButton = ({ color }) => {
         className={buttonClasses}
         style={{ WebkitTapHighlightColor: "transparent" }}
       >
-        <span className={dynamicSecondaryColorClass}>Capacités</span>
+        <span className={dynamicSecondaryColorClass}>Ecouter</span>
         <span className="hidden tab:inline">Voir ses capacités</span>
       </button>
 
