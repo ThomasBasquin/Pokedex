@@ -118,7 +118,9 @@ const Pokedex = ({ initialPokemonData }) => {
             <ImageGroup id={i} color={secondaryTextClass} />
             <div className="flex flex-shrink justify-between mt-7">
               <PokemonName id={id} />
-              {!loading && <CapacityButton color={secondaryBackgroundClass} />}
+              {!loading && (
+                <CapacityButton color={secondaryBackgroundClass} id={id} />
+              )}
             </div>
             <PokemonInfo id={id} />
           </animated.div>
