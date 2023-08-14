@@ -24,7 +24,7 @@ const PokemonInfo = ({ id }) => {
   return (
     <div className={descriptionDivClasses}>
       <div className="flex justify-center">
-        <p className="text-[0.940rem] w-5/6 text-white tracking-normal">
+        <p className="text-[0.940rem] w-5/6 text-white tracking-normal max-h-[4.5rem] overflow-scroll">
           <span className="">{pokemonDescription}</span>
         </p>
       </div>

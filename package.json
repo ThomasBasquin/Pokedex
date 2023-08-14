@@ -26,8 +26,7 @@
     "react-swipeable": "^7.0.1",
     "react-virtualized-auto-sizer": "^1.0.19",
     "react-window": "^1.8.9",
-    "sharp": "^0.32.1",
-    "tailwind-scrollbar-hide": "^1.1.7"
+    "sharp": "^0.32.1"
   },
   "devDependencies": {
     "@types/react": "^18.0.27",
