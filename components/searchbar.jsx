@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { getPokemonId } from "../services/pokemonApi";
+import Fuse from "fuse.js";
 import Image from "next/image";
+import pokemonList from "../services/pokemonData.json";
 
 const SearchBar = ({ id, setId }) => {
   let [search, setSearch] = useState("");
@@ -10,6 +12,22 @@ const SearchBar = ({ id, setId }) => {
   function onlyLettersAndNumbers(str) {
     return /[A-Za-z]/.test(str) && /[0-9]/.test(str);
   }
+
+  const options = {
+    includeScore: true,
+    keys: ["id", "nameFr", "nameEn"],
+  };
+
+  const fuse = new Fuse(pokemonList, options);
+
+  useEffect(() => {
+    if (search.length > 0) {
+      const result = fuse.search(search);
+      if (result.length > 0) {
+        setSearch(result[0].item.id.toString());
+      }
+    }
+  }, [search]);
 
   const searchPokemon = () => {
     search = search.toLowerCase();
@@ -40,7 +58,7 @@ const SearchBar = ({ id, setId }) => {
       if (search < 1 || search > 1008) {
         setId(previousId);
         setSearch("");
-        setErrorMessage("Merci d'entrer l'id d'un des 1008 Pokémon");
+        setErrorMessage("Merci d'entrer l'id d'un des 899 Pokémon");
       } else {
         setId(search);
         setSearch("");
