@@ -5,7 +5,7 @@ import AutoSizer from "react-virtualized-auto-sizer";
 import classNames from "classnames";
 
 const PokemonList = ({ selectedId, onPokemonSelect, setDirection }) => {
-  const pokemons = [...Array(898).keys()].map((i) => i + 1);
+  const pokemons = [...Array(1008).keys()].map((i) => i + 1);
   const listRef = React.useRef();
   const [isLeftAnimated, setIsLeftAnimated] = useState(false);
   const [isRightAnimated, setIsRightAnimated] = useState(false);
@@ -108,7 +108,7 @@ const PokemonList = ({ selectedId, onPokemonSelect, setDirection }) => {
           isRightAnimated ? "animate__headShake" : ""
         }`}
         onClick={() => {
-          if (selectedId < 898) {
+          if (selectedId < 1008) {
             setDirection("right");
             onPokemonSelect(selectedId + 1);
             preloadPokemonData(selectedId + 2);

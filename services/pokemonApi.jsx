@@ -39,7 +39,7 @@ export const getPokemonData = async (id) => {
   let frenchFlavorTextEntry;
 
   // Trouver la première entrée de flavor text en français ou traduire celle en anglais à partir du pokémon 899
-  if (id < 899) {
+  if (id < 1009) {
     frenchFlavorTextEntry = textData.flavor_text_entries.find(
       (entry) => entry.language.name === "fr"
     ) || { flavor_text: "Description non disponible" };

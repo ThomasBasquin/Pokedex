@@ -45,7 +45,7 @@ const SearchBar = ({ id, setId }) => {
       }
     } else if (search.length > 0 && !isNaN(search)) {
       search = parseInt(search);
-      if (search < 1 || search > 898) {
+      if (search < 1 || search > 1008) {
         setId(previousId);
         setSearch("");
         setErrorMessage("Numéro invalide");
