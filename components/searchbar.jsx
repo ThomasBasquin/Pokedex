@@ -21,40 +21,29 @@ const SearchBar = ({ id, setId }) => {
 
   const fuse = new Fuse(pokemonList, options);
 
-  useEffect(() => {
-    if (search.length > 0) {
-      const result = fuse.search(search);
-      if (result.length > 0) {
-        setSearch(result[0].item.id.toString());
-      }
-    }
-  }, [search]);
-
   const searchPokemon = () => {
     search = search.toLowerCase();
     const previousId = id;
-    if (search === "") {
-      setErrorMessage("Veuillez rentrer un Nom ou un Id");
-      setId(previousId);
-      setSearch("");
-      return;
-    } else if (onlyLettersAndNumbers(search)) {
-      setErrorMessage("Merci d'entrer seulement un nom ou un Id");
-      setId(previousId);
-      setSearch("");
-    } else if (isNaN(search)) {
-      axios
-        .post("/api/translate", { text: search, source: "fr" })
-        .then((res) => {
-          getPokemonId(res.data.translatedText)
-            .then(setId, setSearch(""))
-            .catch((error) => {
-              setErrorMessage("Désolé, ce nom de pokémon n'existe pas");
-              setId(previousId);
-              setSearch("");
-            });
-        });
-    } else {
+
+    if (search.length > 0 && isNaN(search)) {
+      if (onlyLettersAndNumbers(search)) {
+        setErrorMessage("Merci d'entrer seulement un nom ou un Id");
+        setId(previousId);
+        setSearch("");
+        setErrorMessageIsVisible(true);
+        setTimeout(() => {
+          setErrorMessageIsVisible(false);
+        }, 2000);
+        return;
+      }
+      const result = fuse.search(search);
+      if (result.length > 0) {
+        setSearch(result[0].item.id.toString());
+        setId(result[0].item.id);
+        setSearch("");
+        return;
+      }
+    } else if (search.length > 0 && !isNaN(search)) {
       search = parseInt(search);
       if (search < 1 || search > 898) {
         setId(previousId);
@@ -83,9 +72,9 @@ const SearchBar = ({ id, setId }) => {
         }`}
       >
         <input
-          type="number"
+          type="text"
           value={search}
-          placeholder="Numéro du Pokémon"
+          placeholder="Nom ou numéro du Pokémon"
           onChange={handleChange}
           onKeyDown={(e) => {
             if (e.key === "Enter") {
