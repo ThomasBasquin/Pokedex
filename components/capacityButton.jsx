@@ -26,7 +26,8 @@ const CapacityButton = ({ color, id }) => {
     "mr-5",
     "transition-transform",
     "duration-100   ",
-    "active:scale-95"
+    "active:scale-95",
+    "whitespace-nowrap"
   );
 
   return (
