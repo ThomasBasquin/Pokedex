@@ -50,7 +50,7 @@ const PokemonList = ({ selectedId, onPokemonSelect, setDirection }) => {
     <div
       onClick={() => handleClickOnId(pokemons[index])}
       style={{ ...style }}
-      className={`flex justify-center text-white text-[0.940rem] items-center ${
+      className={`flex justify-center text-white text-sm items-center ${
         pokemons[index] === selectedId
           ? "font-bold"
           : "font-normal text-gray-300 text-opacity-60"

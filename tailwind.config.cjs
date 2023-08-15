@@ -90,7 +90,8 @@ module.exports = {
         },
       },
       fontFamily: {
-        nunito: ["nunito", "sans-serif"],
+        nunito: ["Nunito", "sans-serif"],
+        IBM: ["IBM Plex Mono", "sans-serif"],
       },
       backgroundImage: {
         "pokemon-bg": "url('/assets/pokemon-background.webp')",

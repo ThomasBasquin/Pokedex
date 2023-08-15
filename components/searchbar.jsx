@@ -67,7 +67,7 @@ const SearchBar = ({ id, setId }) => {
   return (
     <div>
       <div
-        className={`z-20 mt-4 h-9 flex w-full justify-center items-center relative animate__animated transition-transform ${
+        className={`z-20 text-[0.900rem] mt-4 h-9 flex w-full justify-center items-center relative animate__animated transition-transform ${
           errorMessageIsVisible ? "animate__headShake " : ""
         }`}
       >

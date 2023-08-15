@@ -60,7 +60,7 @@ function App() {
       style={windowHeight !== null ? { "--vh": `${windowHeight}px` } : {}}
     >
       <Image
-        src="/assets/Pokedex.png"
+        src="/assets/Pokedex_bis.png"
         alt="Pokedex"
         width={192}
         height={72}
@@ -94,7 +94,7 @@ function App() {
               desktop-xl:w-28 desktop-xl:hover:w-32"
           />
         </Link>
-        <h2 className="tab:hidden text-white mt-2 font-semibold text-base hover:text-gray-200 hover:scale-110 hover:tracking-wider hover:cursor-default transition-all duration-200">
+        <h2 className="tab:hidden text-white mt-2 font-semibold text-sm hover:text-gray-200 hover:scale-110 hover:tracking-wider hover:cursor-default transition-all duration-200">
           Appuyer sur la Pokeball pour entrer
         </h2>
         <h2

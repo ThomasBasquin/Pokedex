@@ -11,10 +11,10 @@ const PokemonName = ({ id, color }) => {
   const { name: pokemonName } = data;
 
   const nameDivClasses = classNames(
-    "text-lg",
+    "text-base",
     "ml-5",
     "text-white",
-    "tracking-wide",
+    "tracking-normal",
     "fade"
   );
 

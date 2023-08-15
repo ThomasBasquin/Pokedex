@@ -30,6 +30,7 @@ const ImageGroup = ({ id, color }) => {
     "text-6xl",
     "font-[1000]",
     "backgroundFade",
+    "whitespace-nowrap",
     color
   );
 

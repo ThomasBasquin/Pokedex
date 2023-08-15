@@ -8,7 +8,7 @@ const CapacityButton = ({ color, id }) => {
     "rounded-full",
     "text-white",
     "py-3",
-    "px-7",
+    "px-[1.6rem]",
     "shadow-lg",
     color
   );
@@ -20,9 +20,9 @@ const CapacityButton = ({ color, id }) => {
   }
 
   const buttonClasses = classNames(
-    "tracking-wide",
+    "tracking-normal",
     "font-normal",
-    "text-base",
+    "text-sm",
     "mr-5",
     "transition-transform",
     "duration-100   ",
