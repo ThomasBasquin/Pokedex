@@ -4,5 +4,5 @@ const images = {
 
 module.exports = {
   images: images,
-  basePath: "/pokedex",
+  // basePath: "/pokedex",
 };
