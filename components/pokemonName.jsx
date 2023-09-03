@@ -15,13 +15,19 @@ const PokemonName = ({ id, color }) => {
     "ml-5",
     "text-white",
     "tracking-normal",
-    "fade"
+    "fade",
+    "laptop-sm:flex",
+    "laptop-sm:flex-col",
+    "laptop-sm:justify-center",
+    "laptop-sm:tracking-wide"
   );
 
   return (
     <p className={nameDivClasses}>
-      <span className="font-normal">#{id}</span>{" "}
-      <span className="font-bold">- {pokemonName}</span>
+      <span className="font-normal laptop-sm:text-lg">#{id}</span>{" "}
+      <span className="font-bold laptop-sm:text-3xl laptop-sm:mt-2">
+        {pokemonName}
+      </span>
     </p>
   );
 };

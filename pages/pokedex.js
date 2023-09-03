@@ -69,6 +69,7 @@ const Pokedex = ({ initialPokemonData }) => {
     "h-screen",
     "w-screen",
     "tracking-wide",
+    // "items-center",
     primaryClass,
     "backgroundFade"
   );
@@ -101,7 +102,16 @@ const Pokedex = ({ initialPokemonData }) => {
   return (
     <div className="h-full fixed flex justify-center">
       <div {...handleSwipe} className={dynamicPrimaryColorClass}>
-        <SearchBar id={id} setId={setId} />
+        <div className="block laptop-sm:hidden">
+          <SearchBar id={id} setId={setId} />
+        </div>
+        <div className="hidden laptop-sm:block">
+          <div className="flex justify-between mt-7">
+            <PokemonName id={id} />
+            <SearchBar id={id} setId={setId} />
+          </div>
+        </div>
+
         {loading && (
           <div className="fixed top-0 left-0 w-screen h-screen flex items-center justify-center">
             <Image
@@ -116,7 +126,7 @@ const Pokedex = ({ initialPokemonData }) => {
         {transitions((style, i) => (
           <animated.div style={style}>
             <ImageGroup id={i} color={secondaryTextClass} />
-            <div className="flex flex-shrink justify-between mt-7">
+            <div className="flex laptop-sm:hidden  flex-shrink justify-between mt-7">
               <PokemonName id={id} />
               {!loading && (
                 <CapacityButton color={secondaryBackgroundClass} id={id} />

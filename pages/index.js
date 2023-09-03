@@ -78,7 +78,7 @@ function App() {
       w-full flex flex-col justify-center items-center absolute bottom-7 
       tab:bottom-14 
       laptop-sm:bottom-10 
-      laptop-lg:bottom-10 
+      laptop-lg:bottom-12 
       desktop-xl:bottom-16"
       >
         <Link href="/pokedex">
@@ -89,9 +89,9 @@ function App() {
             height={96}
             className="
               w-24 bottom-12 animate-bounce transition-all duration-200 
-              laptop-sm:w-20 laptop-sm:hover:w-24 laptop-sm:bottom-6 
-              laptop-lg:w-24 laptop-lg:hover:w-28 
-              desktop-xl:w-28 desktop-xl:hover:w-32"
+              laptop-sm:w-16 laptop-sm:bottom-6 
+              laptop-lg:w-28 
+              desktop-xl:w-28 "
           />
         </Link>
         <h2 className="tab:hidden text-white mt-2 font-semibold text-sm hover:text-gray-200 hover:scale-110 hover:tracking-wider hover:cursor-default transition-all duration-200">
@@ -100,11 +100,12 @@ function App() {
         <h2
           className="
         hidden 
-        text-white mt-2 font-semibold text-lg hover:text-gray-200 hover:scale-110 hover:tracking-wider hover:cursor-default transition-all duration-200
+        text-white mt-2 font-semibold text-lg hover:tracking-wider hover:cursor-default transition-all duration-200
         tab:inline 
         tab:text-lg 
         laptop-sm:mt-2 laptop-sm:text-lg 
-        laptop-lg:text-xl desktop-xl:text-2xl  "
+        laptop-lg:text-2xl 
+        desktop-xl:text-2xl  "
         >
           Cliquer sur la Pokeball pour entrer
         </h2>
