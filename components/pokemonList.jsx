@@ -50,7 +50,7 @@ const PokemonList = ({ selectedId, onPokemonSelect, setDirection }) => {
     <div
       onClick={() => handleClickOnId(pokemons[index])}
       style={{ ...style }}
-      className={`flex justify-center text-white text-sm items-center ${
+      className={`flex justify-center text-white text-sm items-center laptop-sm:overflow-hidden ${
         pokemons[index] === selectedId
           ? "font-bold"
           : "font-normal text-gray-300 text-opacity-60"
@@ -62,7 +62,8 @@ const PokemonList = ({ selectedId, onPokemonSelect, setDirection }) => {
 
   return (
     <div
-      className="flex fixed justify-center w-11/12 overflow-auto bottom-5 py-1"
+      className="flex fixed justify-center w-11/12 overflow-auto bottom-5 py-1
+      laptop-sm:w-1/2"
       style={{
         background: "rgba(0, 0, 0, 0.25)",
         borderRadius: "16px",
@@ -87,7 +88,10 @@ const PokemonList = ({ selectedId, onPokemonSelect, setDirection }) => {
       >
         &lt;
       </div>
-      <div className=" w-8/12">
+      <div
+        className="w-8/12
+      laptop-sm:w-9/12 laptop-sm:overflow-hidden"
+      >
         <AutoSizer>
           {({ height, width }) => (
             <List
