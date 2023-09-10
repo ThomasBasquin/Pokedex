@@ -4,8 +4,6 @@ import classNames from "classnames";
 const PokemonListDesktop = ({ selectedRange, setSelectedRange }) => {
   const handleRangeClick = (range) => {
     setSelectedRange(range);
-    console.log(range);
-    console.log(selectedRange);
   };
 
   const rangeSeparatorStyle = {
@@ -15,7 +13,7 @@ const PokemonListDesktop = ({ selectedRange, setSelectedRange }) => {
   };
 
   return (
-    <ul className="flex fixed bottom-5 justify-center  text-white text-sm items-center overflow-hidden">
+    <ul className="flex fixed bottom-5 justify-center text-white text-sm items-center overflow-hidden">
       {[
         "0",
         "50",
