@@ -1,5 +1,6 @@
 import Image from "next/image";
 import React, { useState, useEffect, useRef } from "react";
+import { useMediaQuery } from "react-responsive";
 import PokemonName from "../components/pokemonName";
 import PokemonInfo from "../components/pokemonInfo";
 import CapacityButton from "../components/capacityButton";
@@ -8,7 +9,7 @@ import SearchBar from "../components/searchbar";
 import { getPokemonData, preloadPokemonData } from "../services/pokemonApi";
 import { usePokemonData } from "../hooks/usePokemon";
 import classNames from "classnames";
-import PokemonList from "../components/pokemonList";
+import PokemonListMobile from "../components/mobile/pokemonListMobile";
 import { useTransition, animated } from "react-spring";
 import { useSwipeable } from "react-swipeable";
 
@@ -31,6 +32,7 @@ const Pokedex = ({ initialPokemonData }) => {
   );
   const [direction, setDirection] = useState("right");
   const { loading, data = initialPokemonData } = usePokemonData(id);
+  const isMobile = useMediaQuery({ query: "(max-width: 1224px)" });
 
   useEffect(() => {
     if (data) {
@@ -136,7 +138,7 @@ const Pokedex = ({ initialPokemonData }) => {
           </animated.div>
         ))}
       </div>
-      <PokemonList
+      <PokemonListMobile
         selectedId={id}
         onPokemonSelect={setId}
         setDirection={setDirection}

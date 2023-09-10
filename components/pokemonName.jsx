@@ -25,7 +25,7 @@ const PokemonName = ({ id, color }) => {
   return (
     <p className={nameDivClasses}>
       <span className="font-normal laptop-sm:text-lg">#{id}</span>{" "}
-      <span className="font-bold laptop-sm:text-3xl laptop-sm:mt-2">
+      <span className="font-bold laptop-sm:text-2xl laptop-sm:mt-2">
         {pokemonName}
       </span>
     </p>
