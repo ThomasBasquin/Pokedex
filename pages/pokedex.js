@@ -10,6 +10,8 @@ import { getPokemonData, preloadPokemonData } from "../services/pokemonApi";
 import { usePokemonData } from "../hooks/usePokemon";
 import classNames from "classnames";
 import PokemonListMobile from "../components/mobile/pokemonListMobile";
+import PokemonListDesktop from "../components/pc/pokemonListDesktop";
+import PokemonListVertical from "../components/pc/pokemonListVertical";
 import { useTransition, animated } from "react-spring";
 import { useSwipeable } from "react-swipeable";
 
@@ -26,6 +28,7 @@ const getTypeColors = (type) => {
 
 const Pokedex = ({ initialPokemonData }) => {
   const [id, setId] = useState(1);
+  const [range, setRange] = useState("0");
   const listRef = useRef(null);
   const [primaryType, setPrimaryType] = useState(
     initialPokemonData.types[0] || "grass"
@@ -114,6 +117,8 @@ const Pokedex = ({ initialPokemonData }) => {
           </div>
         </div>
 
+        <PokemonListVertical />
+
         {loading && (
           <div className="fixed top-0 left-0 w-screen h-screen flex items-center justify-center">
             <Image
@@ -138,11 +143,15 @@ const Pokedex = ({ initialPokemonData }) => {
           </animated.div>
         ))}
       </div>
-      <PokemonListMobile
-        selectedId={id}
-        onPokemonSelect={setId}
-        setDirection={setDirection}
-      />
+      {isMobile ? (
+        <PokemonListMobile
+          selectedId={id}
+          onPokemonSelect={setId}
+          setDirection={setDirection}
+        />
+      ) : (
+        <PokemonListDesktop selectedRange={range} setSelectedRange={setRange} />
+      )}
     </div>
   );
 };
