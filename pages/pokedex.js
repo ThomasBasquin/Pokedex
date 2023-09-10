@@ -117,7 +117,12 @@ const Pokedex = ({ initialPokemonData }) => {
           </div>
         </div>
 
-        <PokemonListVertical />
+        <PokemonListVertical
+          selectedId={id}
+          onPokemonSelect={setId}
+          setDirection={setDirection}
+          selectedRange={range}
+        />
 
         {loading && (
           <div className="fixed top-0 left-0 w-screen h-screen flex items-center justify-center">
