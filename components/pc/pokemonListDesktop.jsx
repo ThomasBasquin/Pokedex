@@ -46,7 +46,7 @@ const PokemonListDesktop = ({ selectedRange, setSelectedRange }) => {
             "duration-300",
             {
               "font-bold": range === selectedRange,
-              "font-normal text-gray-300 text-opacity-90":
+              "font-normal text-gray-300 text-opacity-70":
                 range !== selectedRange,
             },
           )}
