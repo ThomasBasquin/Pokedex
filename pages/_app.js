@@ -1,3 +1,4 @@
+import React from "react";
 import "../tailwind.css";
 import "../public/assets/pokemonColors.css";
 import Head from "next/head";

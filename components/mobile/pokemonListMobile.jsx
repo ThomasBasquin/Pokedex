@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { FixedSizeList as List } from "react-window";
 import { preloadPokemonData } from "../../services/pokemonApi";
 import AutoSizer from "react-virtualized-auto-sizer";
-import classNames from "classnames";
 
 const PokemonListMobile = ({ selectedId, onPokemonSelect, setDirection }) => {
   const pokemons = [...Array(1008).keys()].map((i) => i + 1);

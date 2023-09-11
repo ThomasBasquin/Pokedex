@@ -2,8 +2,8 @@ import React from "react";
 import { usePokemonData } from "../hooks/usePokemon";
 import classNames from "classnames";
 
-const PokemonName = ({ id, color }) => {
-  const { loading, error, data } = usePokemonData(id);
+const PokemonName = ({ id }) => {
+  const { error, data } = usePokemonData(id);
 
   if (error) return <p>Error : {error.message}</p>;
   if (!data) return null;

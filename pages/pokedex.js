@@ -1,5 +1,5 @@
 import Image from "next/image";
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import { useMediaQuery } from "react-responsive";
 import PokemonName from "../components/pokemonName";
 import PokemonInfo from "../components/pokemonInfo";
@@ -29,7 +29,6 @@ const getTypeColors = (type) => {
 const Pokedex = ({ initialPokemonData }) => {
   const [id, setId] = useState(1);
   const [range, setRange] = useState("0");
-  const listRef = useRef(null);
   const [primaryType, setPrimaryType] = useState(
     initialPokemonData.types[0] || "grass",
   );

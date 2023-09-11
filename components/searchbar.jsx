@@ -1,8 +1,5 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
-import { getPokemonId } from "../services/pokemonApi";
+import React, { useState } from "react";
 import Fuse from "fuse.js";
-import Image from "next/image";
 import pokemonList from "../services/pokemonData.json";
 
 const SearchBar = ({ id, setId }) => {
