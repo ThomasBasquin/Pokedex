@@ -41,25 +41,25 @@ export const getPokemonData = async (id) => {
   // Trouver la première entrée de flavor text en français ou traduire celle en anglais à partir du pokémon 899
   if (id < 899) {
     frenchFlavorTextEntry = textData.flavor_text_entries.find(
-      (entry) => entry.language.name === "fr"
+      (entry) => entry.language.name === "fr",
     ) || { flavor_text: "Description non disponible" };
   } else {
     frenchFlavorTextEntry = textData.flavor_text_entries.find(
-      (entry) => entry.language.name === "en"
+      (entry) => entry.language.name === "en",
     ) || { flavor_text: "Description non disponible" };
     frenchFlavorTextEntry.flavor_text = await getTranslation(
-      frenchFlavorTextEntry.flavor_text
+      frenchFlavorTextEntry.flavor_text,
     );
   }
 
   // Trouver le nom en français ou utiliser une chaîne de caractères par défaut si non disponible
   const frenchNameEntry = textData.names.find(
-    (nameEntry) => nameEntry.language.name === "fr"
+    (nameEntry) => nameEntry.language.name === "fr",
   ) || { name: "Nom non disponible" };
 
   // trouver le nom en japonais ou utiliser une chaîne de caractères par défaut si non disponible
   const japaneseNameEntry = textData.names.find(
-    (nameEntry) => nameEntry.language.name === "ja"
+    (nameEntry) => nameEntry.language.name === "ja",
   ) || { name: "Nom non disponible" };
 
   return {

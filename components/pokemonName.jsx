@@ -19,7 +19,7 @@ const PokemonName = ({ id, color }) => {
     "laptop-sm:flex",
     "laptop-sm:flex-col",
     "laptop-sm:justify-center",
-    "laptop-sm:tracking-wide"
+    "laptop-sm:tracking-wide",
   );
 
   return (

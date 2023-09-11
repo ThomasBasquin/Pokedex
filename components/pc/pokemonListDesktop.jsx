@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import classNames from "classnames";
 
 const PokemonListDesktop = ({ selectedRange, setSelectedRange }) => {
@@ -48,7 +48,7 @@ const PokemonListDesktop = ({ selectedRange, setSelectedRange }) => {
               "font-bold": range === selectedRange,
               "font-normal text-gray-300 text-opacity-90":
                 range !== selectedRange,
-            }
+            },
           )}
           key={range}
           onClick={() => handleRangeClick(range)}

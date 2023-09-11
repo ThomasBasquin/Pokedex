@@ -14,7 +14,7 @@ export default async (req, res) => {
         q: text,
         source: source,
         target: target,
-      }
+      },
     );
 
     let translatedText = response.data.data.translations[0].translatedText;

@@ -31,7 +31,7 @@ const Pokedex = ({ initialPokemonData }) => {
   const [range, setRange] = useState("0");
   const listRef = useRef(null);
   const [primaryType, setPrimaryType] = useState(
-    initialPokemonData.types[0] || "grass"
+    initialPokemonData.types[0] || "grass",
   );
   const [direction, setDirection] = useState("right");
   const { loading, data = initialPokemonData } = usePokemonData(id);
@@ -76,7 +76,7 @@ const Pokedex = ({ initialPokemonData }) => {
     "tracking-wide",
     // "items-center",
     primaryClass,
-    "backgroundFade"
+    "backgroundFade",
   );
 
   const transitions = useTransition(id, {

@@ -1,13 +1,6 @@
-import React, { useState, useEffect } from "react";
-import { preloadPokemonData } from "../../services/pokemonApi";
-import classNames from "classnames";
+import React from "react";
 
-const PokemonListVertical = ({
-  selectedId,
-  onPokemonSelect,
-  setDirection,
-  selectedRange,
-}) => {
+const PokemonListVertical = ({ selectedRange }) => {
   const pokemons = [...Array(1008).keys()].map((i) => i + 1);
   const pokemonsInSelectedRange =
     selectedRange === "0"

@@ -3,7 +3,7 @@ import { usePokemonData } from "../hooks/usePokemon";
 import classNames from "classnames";
 
 const PokemonInfo = ({ id }) => {
-  const { loading, error, data } = usePokemonData(id);
+  const { error, data } = usePokemonData(id);
 
   if (error) return <p>Error : {error.message}</p>;
   if (!data) return null;
@@ -19,7 +19,7 @@ const PokemonInfo = ({ id }) => {
     "justify-between",
     "h-[8.5rem]",
     "fade",
-    "font-IBM"
+    "font-IBM",
   );
 
   return (

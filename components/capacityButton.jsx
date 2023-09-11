@@ -1,16 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import classNames from "classnames";
 
 const CapacityButton = ({ color, id }) => {
-  const [isOpen, setIsOpen] = useState(false);
-
   const dynamicSecondaryColorClass = classNames(
     "rounded-full",
     "text-white",
     "py-3",
     "px-[1.6rem]",
     "shadow-lg",
-    color
+    color,
   );
 
   function handleClick() {
@@ -27,7 +25,7 @@ const CapacityButton = ({ color, id }) => {
     "transition-transform",
     "duration-100   ",
     "active:scale-95",
-    "whitespace-nowrap"
+    "whitespace-nowrap",
   );
 
   return (

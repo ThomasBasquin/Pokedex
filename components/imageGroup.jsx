@@ -1,11 +1,10 @@
-import React, { use, useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { usePokemonData } from "../hooks/usePokemon";
 import classNames from "classnames";
-import Link from "next/link";
 import Image from "next/image";
 
 const ImageGroup = ({ id, color }) => {
-  const { loading, error, data } = usePokemonData(id);
+  const { error, data } = usePokemonData(id);
 
   useEffect(() => {
     const nextId = id + 1;
@@ -31,7 +30,7 @@ const ImageGroup = ({ id, color }) => {
     "font-[1000]",
     "backgroundFade",
     "whitespace-nowrap",
-    color
+    color,
   );
 
   if (error) return <p>Error : {error.message}</p>;
