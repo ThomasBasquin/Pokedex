@@ -2,7 +2,8 @@ import React from "react";
 import SearchBar from "../components/searchbar";
 import PokemonName from "./pokemonName";
 
-function Header(pokemonId, setPokemonId) {
+function Header(props) {
+  const { pokemonId, setPokemonId } = props;
   return (
     <header>
       <div className="block laptop-sm:hidden">

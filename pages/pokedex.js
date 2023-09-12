@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useMediaQuery } from "react-responsive";
-
 import { getPokemonData, preloadPokemonData } from "../services/pokemonApi";
+import { getTypeColors } from "../utils/getTypeColor";
 import { usePokemonData } from "../hooks/usePokemon";
 import classNames from "classnames";
 import PokemonListMobile from "../components/mobile/pokemonListMobile";
@@ -9,19 +9,7 @@ import PokemonListDesktop from "../components/pc/pokemonListDesktop";
 import PokemonListVertical from "../components/pc/pokemonListVertical";
 import { useSwipeable } from "react-swipeable";
 import Header from "../components/Header";
-import Loader from "../components/Loader";
 import PokemonDisplay from "../components/PokemonDisplay";
-
-const capitalize = (type) => type.charAt(0).toUpperCase() + type.slice(1);
-
-const getTypeColors = (type) => {
-  const capType = capitalize(type);
-  return {
-    primaryClass: `primary${capType}`,
-    secondaryTextClass: `secondaryText${capType}`,
-    secondaryBackgroundClass: `secondaryBackground${capType}`,
-  };
-};
 
 const Pokedex = ({ initialPokemonData }) => {
   const [id, setId] = useState(1);
@@ -75,8 +63,6 @@ const Pokedex = ({ initialPokemonData }) => {
     "backgroundFade",
   );
 
-
-
   return (
     <div className="h-full fixed flex justify-center">
       <div {...handleSwipe} className={dynamicPrimaryColorClass}>
@@ -87,10 +73,6 @@ const Pokedex = ({ initialPokemonData }) => {
           setDirection={setDirection}
           selectedRange={range}
         />
-
-        {loading && (
-          <Loader />
-        )}
 
         <PokemonDisplay pokemon={data} direction={direction} loading={loading} id={id} primaryType={primaryType} />
 

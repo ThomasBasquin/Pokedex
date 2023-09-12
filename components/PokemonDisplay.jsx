@@ -4,18 +4,8 @@ import PokemonInfo from "../components/pokemonInfo";
 import CapacityButton from "../components/capacityButton";
 import ImageGroup from "../components/imageGroup";
 import { useTransition, animated } from "react-spring";
-
-// todo: remove duplicates
-const capitalize = (type) => type.charAt(0).toUpperCase() + type.slice(1);
-
-const getTypeColors = (type) => {
-  const capType = capitalize(type);
-  return {
-    primaryClass: `primary${capType}`,
-    secondaryTextClass: `secondaryText${capType}`,
-    secondaryBackgroundClass: `secondaryBackground${capType}`,
-  };
-};
+import { getTypeColors } from "../utils/getTypeColor";
+import Loader from "./Loader";
 
 function PokemonDisplay(props) {
   const { direction, loading, id, primaryType } = props;
@@ -47,6 +37,8 @@ function PokemonDisplay(props) {
     },
     config: { duration: 300 },
   });
+
+  if (loading) return <Loader />;
 
   return (
     <>
