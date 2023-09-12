@@ -8,7 +8,7 @@ const PokemonName = ({ id }) => {
   if (error) return <p>Error : {error.message}</p>;
   if (!data) return null;
 
-  const { name: pokemonName } = data;
+  const { name } = data;
 
   const nameDivClasses = classNames(
     "text-base",
@@ -26,7 +26,7 @@ const PokemonName = ({ id }) => {
     <p className={nameDivClasses}>
       <span className="font-normal ml-3 laptop-sm:text-lg">#{id}</span>{" "}
       <span className="font-bold laptop-sm:text-2xl laptop-sm:mt-2">
-        {pokemonName}
+        {name}
       </span>
     </p>
   );

@@ -1,30 +1,15 @@
-import Image from "next/image";
 import React, { useState, useEffect } from "react";
 import { useMediaQuery } from "react-responsive";
-import PokemonName from "../components/pokemonName";
-import PokemonInfo from "../components/pokemonInfo";
-import CapacityButton from "../components/capacityButton";
-import ImageGroup from "../components/imageGroup";
-import SearchBar from "../components/searchbar";
 import { getPokemonData, preloadPokemonData } from "../services/pokemonApi";
+import { getTypeColors } from "../utils/getTypeColor";
 import { usePokemonData } from "../hooks/usePokemon";
 import classNames from "classnames";
 import PokemonListMobile from "../components/mobile/pokemonListMobile";
 import PokemonListDesktop from "../components/pc/pokemonListDesktop";
 import PokemonListVertical from "../components/pc/pokemonListVertical";
-import { useTransition, animated } from "react-spring";
 import { useSwipeable } from "react-swipeable";
-
-const capitalize = (type) => type.charAt(0).toUpperCase() + type.slice(1);
-
-const getTypeColors = (type) => {
-  const capType = capitalize(type);
-  return {
-    primaryClass: `primary${capType}`,
-    secondaryTextClass: `secondaryText${capType}`,
-    secondaryBackgroundClass: `secondaryBackground${capType}`,
-  };
-};
+import Header from "../components/Header";
+import PokemonDisplay from "../components/PokemonDisplay";
 
 const Pokedex = ({ initialPokemonData }) => {
   const [id, setId] = useState(1);
@@ -65,7 +50,7 @@ const Pokedex = ({ initialPokemonData }) => {
     trackMouse: true,
   });
 
-  const { primaryClass, secondaryTextClass, secondaryBackgroundClass } =
+  const { primaryClass } =
     getTypeColors(primaryType);
   const dynamicPrimaryColorClass = classNames(
     "flex",
@@ -78,44 +63,10 @@ const Pokedex = ({ initialPokemonData }) => {
     "backgroundFade",
   );
 
-  const transitions = useTransition(id, {
-    from: {
-      position: "absolute",
-      opacity: 0,
-      transform:
-        direction === "right"
-          ? "translate3d(100%,0,0)"
-          : "translate3d(-100%,0,0)",
-    },
-    enter: {
-      position: "absolute",
-      opacity: 1,
-      transform: "translate3d(0%,0,0)",
-    },
-    leave: {
-      position: "absolute",
-      opacity: 0,
-      transform:
-        direction === "right"
-          ? "translate3d(-50%,0,0)"
-          : "translate3d(50%,0,0)",
-    },
-    config: { duration: 300 },
-  });
-
   return (
     <div className="h-full fixed flex justify-center">
       <div {...handleSwipe} className={dynamicPrimaryColorClass}>
-        <div className="block laptop-sm:hidden">
-          <SearchBar id={id} setId={setId} />
-        </div>
-        <div className="hidden laptop-sm:block">
-          <div className="flex justify-between mt-7">
-            <PokemonName id={id} />
-            <SearchBar id={id} setId={setId} />
-          </div>
-        </div>
-
+        <Header pokemonId={id} setPokemonId={setId} />
         <PokemonListVertical
           selectedId={id}
           onPokemonSelect={setId}
@@ -123,29 +74,8 @@ const Pokedex = ({ initialPokemonData }) => {
           selectedRange={range}
         />
 
-        {loading && (
-          <div className="fixed top-0 left-0 w-screen h-screen flex items-center justify-center">
-            <Image
-              src="/assets/loading.gif"
-              alt="loading"
-              width={250}
-              height={250}
-              className=""
-            />
-          </div>
-        )}
-        {transitions((style, i) => (
-          <animated.div style={style}>
-            <ImageGroup id={i} color={secondaryTextClass} />
-            <div className="flex laptop-sm:hidden  flex-shrink justify-between mt-7">
-              <PokemonName id={id} />
-              {!loading && (
-                <CapacityButton color={secondaryBackgroundClass} id={id} />
-              )}
-            </div>
-            <PokemonInfo id={id} />
-          </animated.div>
-        ))}
+        <PokemonDisplay pokemon={data} direction={direction} loading={loading} id={id} primaryType={primaryType} />
+
       </div>
       {isMobile ? (
         <PokemonListMobile
