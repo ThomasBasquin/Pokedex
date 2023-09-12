@@ -5,7 +5,6 @@ import PokemonName from "../components/pokemonName";
 import PokemonInfo from "../components/pokemonInfo";
 import CapacityButton from "../components/capacityButton";
 import ImageGroup from "../components/imageGroup";
-import SearchBar from "../components/searchbar";
 import { getPokemonData, preloadPokemonData } from "../services/pokemonApi";
 import { usePokemonData } from "../hooks/usePokemon";
 import classNames from "classnames";
@@ -14,6 +13,7 @@ import PokemonListDesktop from "../components/pc/pokemonListDesktop";
 import PokemonListVertical from "../components/pc/pokemonListVertical";
 import { useTransition, animated } from "react-spring";
 import { useSwipeable } from "react-swipeable";
+import Header from "../components/Header";
 
 const capitalize = (type) => type.charAt(0).toUpperCase() + type.slice(1);
 
@@ -106,16 +106,7 @@ const Pokedex = ({ initialPokemonData }) => {
   return (
     <div className="h-full fixed flex justify-center">
       <div {...handleSwipe} className={dynamicPrimaryColorClass}>
-        <div className="block laptop-sm:hidden">
-          <SearchBar id={id} setId={setId} />
-        </div>
-        <div className="hidden laptop-sm:block">
-          <div className="flex justify-between mt-7">
-            <PokemonName id={id} />
-            <SearchBar id={id} setId={setId} />
-          </div>
-        </div>
-
+        <Header pokemonId={id} setPokemonId={setId} />
         <PokemonListVertical
           selectedId={id}
           onPokemonSelect={setId}
