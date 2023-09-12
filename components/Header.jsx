@@ -1,9 +1,10 @@
 import React from "react";
 import SearchBar from "../components/searchbar";
-import PokemonName from "./pokemonName";
+import PokemonName from "./PokemonName";
 
 function Header(props) {
   const { pokemonId, setPokemonId } = props;
+
   return (
     <header>
       <div className="block laptop-sm:hidden">
@@ -11,7 +12,7 @@ function Header(props) {
       </div>
       <div className="hidden laptop-sm:block">
         <div className="flex justify-between mt-7">
-          <PokemonName pokemonId={pokemonId} />
+          <PokemonName id={pokemonId} />
           <SearchBar pokemonId={pokemonId} setId={setPokemonId} />
         </div>
       </div>

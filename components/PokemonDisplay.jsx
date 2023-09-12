@@ -1,5 +1,5 @@
 import React from "react";
-import PokemonName from "../components/pokemonName";
+import PokemonName from "./PokemonName";
 import PokemonInfo from "../components/pokemonInfo";
 import CapacityButton from "../components/capacityButton";
 import ImageGroup from "../components/imageGroup";
