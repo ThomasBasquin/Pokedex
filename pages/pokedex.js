@@ -50,8 +50,7 @@ const Pokedex = ({ initialPokemonData }) => {
     trackMouse: true,
   });
 
-  const { primaryClass } =
-    getTypeColors(primaryType);
+  const { primaryClass } = getTypeColors(primaryType);
   const dynamicPrimaryColorClass = classNames(
     "flex",
     "flex-col",
@@ -67,15 +66,22 @@ const Pokedex = ({ initialPokemonData }) => {
     <div className="h-full fixed flex justify-center">
       <div {...handleSwipe} className={dynamicPrimaryColorClass}>
         <Header pokemonId={id} setPokemonId={setId} />
-        <PokemonListVertical
-          selectedId={id}
-          onPokemonSelect={setId}
-          setDirection={setDirection}
-          selectedRange={range}
+        {isMobile ? null : (
+          <PokemonListVertical
+            selectedId={id}
+            onPokemonSelect={setId}
+            setDirection={setDirection}
+            selectedRange={range}
+          />
+        )}
+
+        <PokemonDisplay
+          pokemon={data}
+          direction={direction}
+          loading={loading}
+          id={id}
+          primaryType={primaryType}
         />
-
-        <PokemonDisplay pokemon={data} direction={direction} loading={loading} id={id} primaryType={primaryType} />
-
       </div>
       {isMobile ? (
         <PokemonListMobile
