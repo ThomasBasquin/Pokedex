@@ -1,9 +1,14 @@
-import React from "react";
+import React, { useEffect } from "react";
 import classNames from "classnames";
 
-const PokemonListDesktop = ({ selectedRange, setSelectedRange }) => {
+const PokemonListDesktop = ({
+  selectedRange,
+  setSelectedRange,
+  onPokemonSelect,
+}) => {
   const handleRangeClick = (range) => {
     setSelectedRange(range);
+    onPokemonSelect(parseInt(range));
   };
 
   const rangeSeparatorStyle = {
@@ -15,7 +20,7 @@ const PokemonListDesktop = ({ selectedRange, setSelectedRange }) => {
   return (
     <ul className="flex fixed bottom-5 justify-center text-white text-sm items-center overflow-hidden">
       {[
-        "0",
+        "1",
         "50",
         "100",
         "150",

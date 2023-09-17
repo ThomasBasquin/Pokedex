@@ -13,7 +13,7 @@ import PokemonDisplay from "../components/PokemonDisplay";
 
 const Pokedex = ({ initialPokemonData }) => {
   const [id, setId] = useState(1);
-  const [range, setRange] = useState("0");
+  const [range, setRange] = useState("1");
   const [primaryType, setPrimaryType] = useState(
     initialPokemonData.types[0] || "grass",
   );
@@ -26,6 +26,16 @@ const Pokedex = ({ initialPokemonData }) => {
       setPrimaryType(data.types[0] || "grass");
     }
   }, [data]);
+
+  useEffect(() => {
+    const calculId = id + 1;
+    let newRange = Math.ceil(calculId / 50) * 50 - 50;
+    if (newRange < 1) {
+      newRange = 1;
+    }
+    setRange(newRange.toString());
+    console.log("range", newRange);
+  }, [id]);
 
   const handleSwipe = useSwipeable({
     onSwipedLeft: () =>
@@ -91,6 +101,7 @@ const Pokedex = ({ initialPokemonData }) => {
           <PokemonListDesktop
             selectedRange={range}
             setSelectedRange={setRange}
+            onPokemonSelect={setId}
           />
         </>
       )}
