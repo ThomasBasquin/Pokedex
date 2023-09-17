@@ -23,7 +23,7 @@ function PokemonDisplay(props) {
           : "translate3d(-100%,0,0)",
     },
     enter: {
-      position: "absolute",
+      position: "relative",
       opacity: 1,
       transform: "translate3d(0%,0,0)",
     },
@@ -41,7 +41,7 @@ function PokemonDisplay(props) {
   if (loading) return <Loader />;
 
   return (
-    <>
+    <div className="relative ">
       {transitions((style, i) => (
         <animated.div style={style}>
           <ImageGroup id={i} color={secondaryTextClass} />
@@ -54,7 +54,7 @@ function PokemonDisplay(props) {
           <PokemonInfo id={id} />
         </animated.div>
       ))}
-    </>
+    </div>
   );
 }
 
