@@ -22,3 +22,23 @@ body {
 .fade {
   transition: opacity 0.45s ease-in-out;
 }
+
+.custom-scrollbar {
+  /* Scrollbar styles */
+  scrollbar-width: thin;
+}
+
+/* For Webkit browsers like Chrome, Safari */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 0.4em;
+  border-radius: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  border-radius: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.4);
+  border-radius: 10px;
+}

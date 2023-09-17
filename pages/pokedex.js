@@ -66,15 +66,6 @@ const Pokedex = ({ initialPokemonData }) => {
     <div className="h-full fixed flex justify-center">
       <div {...handleSwipe} className={dynamicPrimaryColorClass}>
         <Header pokemonId={id} setPokemonId={setId} />
-        {isMobile ? null : (
-          <PokemonListVertical
-            selectedId={id}
-            onPokemonSelect={setId}
-            setDirection={setDirection}
-            selectedRange={range}
-          />
-        )}
-
         <PokemonDisplay
           pokemon={data}
           direction={direction}
@@ -90,7 +81,18 @@ const Pokedex = ({ initialPokemonData }) => {
           setDirection={setDirection}
         />
       ) : (
-        <PokemonListDesktop selectedRange={range} setSelectedRange={setRange} />
+        <>
+          <PokemonListVertical
+            selectedId={id}
+            onPokemonSelect={setId}
+            setDirection={setDirection}
+            selectedRange={range}
+          />
+          <PokemonListDesktop
+            selectedRange={range}
+            setSelectedRange={setRange}
+          />
+        </>
       )}
     </div>
   );
