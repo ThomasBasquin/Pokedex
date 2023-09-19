@@ -1,6 +1,6 @@
 import React from "react";
 import SearchBar from "../components/searchbar";
-import PokemonName from "./PokemonName";
+import PokemonName from "../components/PokemonName";
 
 function Header(props) {
   const { pokemonId, setPokemonId } = props;
