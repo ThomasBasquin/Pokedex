@@ -1,6 +1,7 @@
 import React from "react";
 import PokemonName from "./PokemonName";
 import PokemonInfo from "../components/pokemonInfo";
+import PokemonSizeWeight from "../components/PokemonSizeWeight";
 import CapacityButton from "../components/capacityButton";
 import ImageGroup from "../components/imageGroup";
 import { useTransition, animated } from "react-spring";
@@ -8,7 +9,7 @@ import { getTypeColors } from "../utils/getTypeColor";
 import Loader from "./Loader";
 
 function PokemonDisplay(props) {
-  const { direction, loading, id, primaryType } = props;
+  const { direction, loading, id, primaryType, isMobile } = props;
 
   const { secondaryTextClass, secondaryBackgroundClass } =
     getTypeColors(primaryType);
@@ -40,18 +41,46 @@ function PokemonDisplay(props) {
 
   if (loading) return <Loader />;
 
+  const renderMobileContent = (
+    id,
+    secondaryTextClass,
+    secondaryBackgroundClass,
+    loading,
+  ) => (
+    <>
+      <ImageGroup id={id} color={secondaryTextClass} />
+      <div className="flex laptop-sm:hidden  flex-shrink justify-between mt-7">
+        <PokemonName id={id} />
+        {!loading && (
+          <CapacityButton color={secondaryBackgroundClass} id={id} />
+        )}
+      </div>
+      <PokemonInfo id={id} isMobile={isMobile} />
+    </>
+  );
+
+  const renderDesktopContent = (id) => (
+    <>
+      <div className="flex flex-row justify-between items-center">
+        <PokemonSizeWeight id={id} />
+        <ImageGroup id={id} color={secondaryTextClass} />
+        <PokemonInfo id={id} isMobile={isMobile} />;
+      </div>
+    </>
+  );
+
   return (
-    <div className="relative ">
+    <div className="relative">
       {transitions((style, i) => (
         <animated.div style={style}>
-          <ImageGroup id={i} color={secondaryTextClass} />
-          <div className="flex laptop-sm:hidden  flex-shrink justify-between mt-7">
-            <PokemonName id={id} />
-            {!loading && (
-              <CapacityButton color={secondaryBackgroundClass} id={id} />
-            )}
-          </div>
-          <PokemonInfo id={id} />
+          {isMobile
+            ? renderMobileContent(
+                i,
+                secondaryTextClass,
+                secondaryBackgroundClass,
+                loading,
+              )
+            : renderDesktopContent(i)}
         </animated.div>
       ))}
     </div>

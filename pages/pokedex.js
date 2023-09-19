@@ -34,7 +34,6 @@ const Pokedex = ({ initialPokemonData }) => {
       newRange = 1;
     }
     setRange(newRange.toString());
-    console.log("range", newRange);
   }, [id]);
 
   const handleSwipe = useSwipeable({
@@ -82,6 +81,7 @@ const Pokedex = ({ initialPokemonData }) => {
           loading={loading}
           id={id}
           primaryType={primaryType}
+          isMobile={isMobile}
         />
       </div>
       {isMobile ? (

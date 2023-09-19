@@ -45,7 +45,7 @@ const PokemonListVertical = ({
   };
 
   return (
-    <aside className="flex flex-col justify-center h-[50vh] overflow-y-auto w-fit absolute right-0 top-[50%] transform translate-y-[-50%] z-50 mr-2 p-2 custom-scrollbar">
+    <aside className="flex flex-col justify-center h-[55vh] overflow-y-auto w-fit absolute right-0 top-[50%] transform translate-y-[-50%] z-50 mr-2 p-2 custom-scrollbar">
       <ul className="h-full">
         {pokemonIdsInSelectedRange.map((id) => (
           <li
@@ -59,6 +59,7 @@ const PokemonListVertical = ({
               "ease-in-out",
               "duration-300",
               "text-white",
+              "my-1", // add margin top and bottom
               {
                 "font-bold": id === selectedId,
                 "font-normal text-gray-300 text-opacity-50": id !== selectedId,

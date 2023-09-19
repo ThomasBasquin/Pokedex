@@ -31,6 +31,7 @@ const ImageGroup = ({ id, color }) => {
     "backgroundFade",
     "whitespace-nowrap",
     color,
+    "laptop-sm:text-[9rem]",
   );
 
   if (error) return <p>Error : {error.message}</p>;
@@ -44,16 +45,16 @@ const ImageGroup = ({ id, color }) => {
   return (
     <div
       className="
-      flex flex-col items-center justify-center pt-24"
+      flex flex-col items-center justify-center pt-24 laptop-sm:max-w-xl laptop-sm:pt-16"
     >
       <p className={dynamicSecondaryColorClass}>{japanesePokemonName}</p>
       <div className="flex flex-row items-start h-56">
         <Image
-          className="w-60 -mt-8 z-10"
+          className="w-60 -mt-24 z-10 laptop-sm:w-[28rem]"
           src={pokemonImageUrl}
           alt="pokemon"
-          width={240}
-          height={240}
+          width={448}
+          height={448}
           priority
         />
         <div className="flex flex-col items-center -ml-4 mb-16">
