@@ -64,7 +64,7 @@ function PokemonDisplay(props) {
       <div className="flex flex-row justify-between items-center">
         <PokemonSizeWeight id={id} />
         <ImageGroup id={id} color={secondaryTextClass} />
-        <PokemonInfo id={id} isMobile={isMobile} />;
+        <PokemonInfo id={id} isMobile={isMobile} />
       </div>
     </>
   );
