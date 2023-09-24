@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
-import { usePokemonData } from "../hooks/usePokemon";
 import classNames from "classnames";
 import Image from "next/image";
+import { usePokemonData } from "../hooks/usePokemon";
 
-const ImageGroup = ({ id, color }) => {
+function ImageGroup({ id, color }) {
   const { error, data } = usePokemonData(id);
 
   useEffect(() => {
@@ -23,6 +23,7 @@ const ImageGroup = ({ id, color }) => {
         document.head.removeChild(link);
       };
     }
+    return null;
   }, [id]);
 
   const dynamicSecondaryColorClass = classNames(
@@ -37,7 +38,7 @@ const ImageGroup = ({ id, color }) => {
   if (error) return <p>Error : {error.message}</p>;
   if (!data) return null;
 
-  const { japaneseName: japanesePokemonName, types: types } = data;
+  const { japaneseName: japanesePokemonName, types } = data;
 
   const paddedId = String(id).padStart(3, "0");
   const pokemonImageUrl = `/assets/pokemonImage/${paddedId}.png`;
@@ -50,7 +51,7 @@ const ImageGroup = ({ id, color }) => {
       <p className={dynamicSecondaryColorClass}>{japanesePokemonName}</p>
       <div className="flex flex-row items-start h-56">
         <Image
-          className="w-60 -mt-24 z-10 laptop-sm:w-[20rem]"
+          className="w-60 -mt-8  z-10 laptop-sm:-mt-24 laptop-sm:w-[20rem]"
           src={pokemonImageUrl}
           alt="pokemon"
           width={448}
@@ -58,22 +59,20 @@ const ImageGroup = ({ id, color }) => {
           priority
         />
         <div className="flex flex-col items-center -ml-4 mb-16">
-          {types.map((type, index) => {
-            return (
-              <Image
-                key={index}
-                className="w-20"
-                src={`/assets/${type}.png`}
-                alt={type}
-                width={80}
-                height={80}
-              />
-            );
-          })}
+          {types.map((type) => (
+            <Image
+              key={type}
+              className="w-20"
+              src={`/assets/${type}.png`}
+              alt={type}
+              width={80}
+              height={80}
+            />
+          ))}
         </div>
       </div>
     </div>
   );
-};
+}
 
 export default ImageGroup;

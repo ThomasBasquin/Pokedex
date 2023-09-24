@@ -1,10 +1,10 @@
 import React from "react";
-import PokemonName from "./PokemonName";
-import PokemonInfo from "../components/pokemonInfo";
-import PokemonSizeWeight from "../components/PokemonSizeWeight";
-import CapacityButton from "../components/capacityButton";
-import ImageGroup from "../components/imageGroup";
 import { useTransition, animated } from "react-spring";
+import PokemonName from "./pokemonName";
+import PokemonInfo from "./pokemonInfo";
+import PokemonSizeWeight from "./PokemonSizeWeight";
+import CapacityButton from "./capacityButton";
+import ImageGroup from "./imageGroup";
 import { getTypeColors } from "../utils/getTypeColor";
 import Loader from "./Loader";
 
@@ -41,12 +41,7 @@ function PokemonDisplay(props) {
 
   if (loading) return <Loader />;
 
-  const renderMobileContent = (
-    id,
-    secondaryTextClass,
-    secondaryBackgroundClass,
-    loading,
-  ) => (
+  const renderMobileContent = () => (
     <>
       <ImageGroup id={id} color={secondaryTextClass} />
       <div className="flex laptop-sm:hidden  flex-shrink justify-between mt-7">
@@ -59,14 +54,12 @@ function PokemonDisplay(props) {
     </>
   );
 
-  const renderDesktopContent = (id) => (
-    <>
-      <div className="flex flex-row justify-between items-center">
-        <PokemonSizeWeight id={id} />
-        <ImageGroup id={id} color={secondaryTextClass} />
-        <PokemonInfo id={id} isMobile={isMobile} />
-      </div>
-    </>
+  const renderDesktopContent = () => (
+    <div className="flex flex-row justify-between items-center">
+      <PokemonSizeWeight id={id} />
+      <ImageGroup id={id} color={secondaryTextClass} />
+      <PokemonInfo id={id} isMobile={isMobile} />
+    </div>
   );
 
   return (

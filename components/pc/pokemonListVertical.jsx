@@ -1,13 +1,13 @@
 import React, { useRef, useEffect } from "react";
-import { preloadPokemonData } from "../../services/pokemonApi";
 import classNames from "classnames";
+import { preloadPokemonData } from "../../services/pokemonApi";
 
-const PokemonListVertical = ({
+function PokemonListVertical({
   selectedId,
   onPokemonSelect,
   setDirection,
   selectedRange,
-}) => {
+}) {
   const pokemons = [...Array(1008).keys()].map((i) => i + 1);
   const pokemonIdsInSelectedRange =
     selectedRange === "0"
@@ -59,20 +59,21 @@ const PokemonListVertical = ({
               "ease-in-out",
               "duration-300",
               "text-white",
-              "my-1", // add margin top and bottom
+              "my-1",
               {
                 "font-bold": id === selectedId,
                 "font-normal text-gray-300 text-opacity-50": id !== selectedId,
               },
             )}
-            onClick={() => handleClickOnId(id)}
           >
-            {id}
+            <button type="button" onClick={() => handleClickOnId(id)}>
+              {id}
+            </button>
           </li>
         ))}
       </ul>
     </aside>
   );
-};
+}
 
 export default PokemonListVertical;

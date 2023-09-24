@@ -1,14 +1,14 @@
-import React, { useEffect } from "react";
+import React from "react";
 import classNames from "classnames";
 
-const PokemonListDesktop = ({
+function PokemonListDesktop({
   selectedRange,
   setSelectedRange,
   onPokemonSelect,
-}) => {
+}) {
   const handleRangeClick = (range) => {
     setSelectedRange(range);
-    onPokemonSelect(parseInt(range));
+    onPokemonSelect(parseInt(range, 10));
   };
 
   const rangeSeparatorStyle = {
@@ -56,16 +56,17 @@ const PokemonListDesktop = ({
             },
           )}
           key={range}
-          onClick={() => handleRangeClick(range)}
         >
-          {range}
-          {index !== array.length - 1 && (
-            <span style={rangeSeparatorStyle}>-</span>
-          )}
+          <button type="button" onClick={() => handleRangeClick(range)}>
+            {range}
+            {index !== array.length - 1 && (
+              <span style={rangeSeparatorStyle}>-</span>
+            )}
+          </button>
         </li>
       ))}
     </ul>
   );
-};
+}
 
 export default PokemonListDesktop;

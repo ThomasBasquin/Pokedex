@@ -1,8 +1,8 @@
 import React from "react";
-import { usePokemonData } from "../hooks/usePokemon";
 import classNames from "classnames";
+import { usePokemonData } from "../hooks/usePokemon";
 
-const PokemonName = ({ id }) => {
+function PokemonName({ id }) {
   const { error, data } = usePokemonData(id);
 
   if (error) return <p>Error : {error.message}</p>;
@@ -25,11 +25,11 @@ const PokemonName = ({ id }) => {
   return (
     <p className={nameDivClasses}>
       <span className="font-normal ml-3 laptop-sm:text-lg">#{id}</span>
-      <span className="font-bold laptop-sm:text-3xl laptop-sm:mt-2">
+      <span className="font-bold ml-3 laptop-sm:text-3xl laptop-sm:mt-2 laptop-sm:ml-0">
         {name}
       </span>
     </p>
   );
-};
+}
 
 export default PokemonName;
