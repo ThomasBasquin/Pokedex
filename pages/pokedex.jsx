@@ -1,17 +1,17 @@
 import React, { useState, useEffect } from "react";
 import { useMediaQuery } from "react-responsive";
+import { useSwipeable } from "react-swipeable";
+import classNames from "classnames";
 import { getPokemonData, preloadPokemonData } from "../services/pokemonApi";
 import { getTypeColors } from "../utils/getTypeColor";
 import { usePokemonData } from "../hooks/usePokemon";
-import classNames from "classnames";
 import PokemonListMobile from "../components/mobile/pokemonListMobile";
 import PokemonListDesktop from "../components/pc/pokemonListDesktop";
 import PokemonListVertical from "../components/pc/pokemonListVertical";
-import { useSwipeable } from "react-swipeable";
 import Header from "../components/Header";
 import PokemonDisplay from "../components/PokemonDisplay";
 
-const Pokedex = ({ initialPokemonData }) => {
+function Pokedex({ initialPokemonData }) {
   const [id, setId] = useState(1);
   const [range, setRange] = useState("1");
   const [primaryType, setPrimaryType] = useState(
@@ -66,13 +66,13 @@ const Pokedex = ({ initialPokemonData }) => {
     "h-screen",
     "w-screen",
     "tracking-wide",
-    // "items-center",
     primaryClass,
     "backgroundFade",
   );
 
   return (
     <div className="h-full fixed flex justify-center">
+      {/* eslint-disable-next-line react/jsx-props-no-spreading */}
       <div {...handleSwipe} className={dynamicPrimaryColorClass}>
         <Header pokemonId={id} setPokemonId={setId} />
         <PokemonDisplay
@@ -107,7 +107,7 @@ const Pokedex = ({ initialPokemonData }) => {
       )}
     </div>
   );
-};
+}
 
 export default Pokedex;
 
