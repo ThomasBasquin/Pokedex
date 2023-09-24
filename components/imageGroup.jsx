@@ -50,7 +50,7 @@ const ImageGroup = ({ id, color }) => {
       <p className={dynamicSecondaryColorClass}>{japanesePokemonName}</p>
       <div className="flex flex-row items-start h-56">
         <Image
-          className="w-60 -mt-24 z-10 laptop-sm:w-[28rem]"
+          className="w-60 -mt-24 z-10 laptop-sm:w-[20rem]"
           src={pokemonImageUrl}
           alt="pokemon"
           width={448}
