@@ -6,12 +6,12 @@ const API_BASE_URL = "https://pokeapi.co/api/v2";
 async function getTranslation(text) {
   try {
     const response = await axios.post("/api/translate", {
-      text: text,
+      text,
       source: "en",
     });
     return response.data.translatedText;
   } catch (error) {
-    console.error("Error translating text:", error);
+    console.error(error);
     return null;
   }
 }
@@ -80,6 +80,6 @@ export const preloadPokemonData = async (id) => {
       pokemonCache[id] = pokemonData;
     }
   } catch (err) {
-    console.error(`Error preloading Pokemon data for ID: ${id}`, err);
+    console.error(err);
   }
 };

@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import Fuse from "fuse.js";
 import pokemonList from "../services/pokemonData.json";
 
-const SearchBar = ({ id, setId }) => {
-  let [search, setSearch] = useState("");
-  let [errorMessage, setErrorMessage] = useState("");
-  let [errorMessageIsVisible, setErrorMessageIsVisible] = useState(false);
+function SearchBar({ id, setId }) {
+  const [search, setSearch] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+  const [errorMessageIsVisible, setErrorMessageIsVisible] = useState(false);
 
   function onlyLettersAndNumbers(str) {
     return /[A-Za-z]/.test(str) && /[0-9]/.test(str);
@@ -19,10 +19,10 @@ const SearchBar = ({ id, setId }) => {
   const fuse = new Fuse(pokemonList, options);
 
   const searchPokemon = () => {
-    search = search.toLowerCase();
+    setSearch(search.toLowerCase());
     const previousId = id;
 
-    if (search.length > 0 && isNaN(search)) {
+    if (search.length > 0 && search.isNaN) {
       if (onlyLettersAndNumbers(search)) {
         setErrorMessage("Merci d'entrer seulement un nom ou un Id");
         setId(previousId);
@@ -38,10 +38,9 @@ const SearchBar = ({ id, setId }) => {
         setSearch(result[0].item.id.toString());
         setId(result[0].item.id);
         setSearch("");
-        return;
       }
-    } else if (search.length > 0 && !isNaN(search)) {
-      search = parseInt(search);
+    } else if (search.length > 0 && !search.isNaN) {
+      setSearch(parseInt(search, 10));
       if (search < 1 || search > 1008) {
         setId(previousId);
         setSearch("");
@@ -92,14 +91,18 @@ const SearchBar = ({ id, setId }) => {
             WebkitBackdropFilter: "blur(7.4px)",
           }}
         />
-        <img
-          src="/assets/loupe.png"
-          alt="loupe"
+        <button
+          type="button"
           onClick={() => {
             searchPokemon();
           }}
-          className="h-5 absolute right-14 top-1/2 transform -translate-y-1/2 -rotate-90 active:scale-90 cursor-pointer"
-        />
+        >
+          <img
+            src="/assets/loupe.png"
+            alt="loupe"
+            className="h-5 absolute right-14 top-1/2 transform -translate-y-1/2 -rotate-90 active:scale-90 cursor-pointer"
+          />
+        </button>
       </div>
       <div className="flex justify-center">
         <p
@@ -112,6 +115,6 @@ const SearchBar = ({ id, setId }) => {
       </div>
     </div>
   );
-};
+}
 
 export default SearchBar;

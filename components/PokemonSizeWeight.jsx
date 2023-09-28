@@ -1,7 +1,7 @@
 import React from "react";
 import { usePokemonData } from "../hooks/usePokemon";
 
-const PokemonSizeWeight = ({ id }) => {
+function PokemonSizeWeight({ id }) {
   const { error, data } = usePokemonData(id);
 
   if (error) return <p>Error : {error.message}</p>;
@@ -21,6 +21,6 @@ const PokemonSizeWeight = ({ id }) => {
       </p>
     </div>
   );
-};
+}
 
 export default PokemonSizeWeight;

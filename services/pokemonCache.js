@@ -1,3 +1,3 @@
-let pokemonCache = {};
+const pokemonCache = {};
 
 export default pokemonCache;

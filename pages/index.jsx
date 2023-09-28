@@ -20,6 +20,7 @@ function App() {
         window.removeEventListener("resize", handleResize);
       };
     }
+    return () => {};
   }, []);
 
   // Preload types images in http cache

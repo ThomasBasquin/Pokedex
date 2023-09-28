@@ -1,9 +1,9 @@
 import React from "react";
-import { usePokemonData } from "../hooks/usePokemon";
 import classNames from "classnames";
+import { usePokemonData } from "../hooks/usePokemon";
 import PokemonSizeWeight from "./PokemonSizeWeight";
 
-const PokemonInfo = (props) => {
+function PokemonInfo(props) {
   const { id, isMobile } = props;
   const { error, data } = usePokemonData(id);
 
@@ -33,6 +33,6 @@ const PokemonInfo = (props) => {
       {isMobile && <PokemonSizeWeight id={id} />}
     </div>
   );
-};
+}
 
 export default PokemonInfo;
