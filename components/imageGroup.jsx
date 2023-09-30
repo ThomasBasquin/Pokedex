@@ -23,7 +23,7 @@ function ImageGroup({ id, color }) {
         document.head.removeChild(link);
       };
     }
-    return null;
+    return undefined;
   }, [id]);
 
   const dynamicSecondaryColorClass = classNames(

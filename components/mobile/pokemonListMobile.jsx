@@ -47,7 +47,8 @@ function PokemonListMobile({ selectedId, onPokemonSelect, setDirection }) {
   }, [selectedId]);
 
   const renderRow = ({ index, style }) => (
-    <list
+    <button
+      type="button"
       onClick={() => handleClickOnId(pokemons[index])}
       style={{ ...style }}
       className={`flex justify-center text-white text-sm items-center laptop-sm:overflow-hidden ${
@@ -57,7 +58,7 @@ function PokemonListMobile({ selectedId, onPokemonSelect, setDirection }) {
       }`}
     >
       {pokemons[index]}
-    </list>
+    </button>
   );
 
   return (

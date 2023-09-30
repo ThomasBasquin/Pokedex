@@ -1,3 +1,4 @@
+/* eslint-disable no-restricted-globals */
 import React, { useState } from "react";
 import Fuse from "fuse.js";
 import pokemonList from "../services/pokemonData.json";
@@ -22,10 +23,9 @@ function SearchBar({ id, setId }) {
     setSearch(search.toLowerCase());
     const previousId = id;
 
-    if (search.length > 0 && search.isNaN) {
+    if (search.length > 0 && isNaN(search)) {
       if (onlyLettersAndNumbers(search)) {
         setErrorMessage("Merci d'entrer seulement un nom ou un Id");
-        setId(previousId);
         setSearch("");
         setErrorMessageIsVisible(true);
         setTimeout(() => {
@@ -39,10 +39,9 @@ function SearchBar({ id, setId }) {
         setId(result[0].item.id);
         setSearch("");
       }
-    } else if (search.length > 0 && !search.isNaN) {
+    } else if (search.length > 0 && !isNaN(search)) {
       setSearch(parseInt(search, 10));
       if (search < 1 || search > 1008) {
-        setId(previousId);
         setSearch("");
         setErrorMessage("Numéro invalide");
         setErrorMessageIsVisible(true);
@@ -108,7 +107,7 @@ function SearchBar({ id, setId }) {
         <p
           className={`transition-opacity duration-1200 ${
             errorMessageIsVisible ? "opacity-100" : "opacity-0"
-          } text-red-600 mt-1 align-middle z-50 font-bold`}
+          } text-white text-xs mt-2 align-middle z-50`}
         >
           {errorMessage}
         </p>
