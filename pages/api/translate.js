@@ -12,12 +12,12 @@ export default async (req, res) => {
       `https://translation.googleapis.com/language/translate/v2?key=${API_KEY}`,
       {
         q: text,
-        source: source,
-        target: target,
+        source,
+        target,
       },
     );
 
-    let translatedText = response.data.data.translations[0].translatedText;
+    let { translatedText } = response.data.data.translations[0];
     translatedText = decode(translatedText);
 
     res.status(200).json({ translatedText });
