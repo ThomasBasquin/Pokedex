@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import Fuse from "fuse.js";
 import pokemonList from "../services/pokemonData.json";
 
-function SearchBar({ id, setId }) {
+function Searchbar({ setId }) {
   const [search, setSearch] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [errorMessageIsVisible, setErrorMessageIsVisible] = useState(false);
@@ -21,7 +21,6 @@ function SearchBar({ id, setId }) {
 
   const searchPokemon = () => {
     setSearch(search.toLowerCase());
-    const previousId = id;
 
     if (search.length > 0 && isNaN(search)) {
       if (onlyLettersAndNumbers(search)) {
@@ -116,4 +115,4 @@ function SearchBar({ id, setId }) {
   );
 }
 
-export default SearchBar;
+export default Searchbar;
