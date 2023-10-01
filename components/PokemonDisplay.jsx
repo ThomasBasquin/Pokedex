@@ -1,10 +1,10 @@
 import React from "react";
 import { useTransition, animated } from "react-spring";
-import PokemonName from "./pokemonName";
-import PokemonInfo from "./pokemonInfo";
+import PokemonName from "./PokemonName";
+import PokemonInfo from "./PokemonInfo";
 import PokemonSizeWeight from "./PokemonSizeWeight";
-import CapacityButton from "./capacityButton";
-import ImageGroup from "./imageGroup";
+import CapacityButton from "./CapacityButton";
+import ImageGroup from "./ImageGroup";
 import { getTypeColors } from "../utils/getTypeColor";
 import Loader from "./Loader";
 
