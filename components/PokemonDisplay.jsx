@@ -1,3 +1,4 @@
+/* eslint-disable import/no-unresolved */
 import React from "react";
 import { useTransition, animated } from "react-spring";
 import PokemonName from "./PokemonName";
