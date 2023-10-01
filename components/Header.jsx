@@ -1,8 +1,8 @@
 /* eslint-disable import/no-unresolved */
 import React from "react";
-import Searchbar from "./Searchbar";
+import Searchbar from "./searchbar";
 
-import PokemonName from "./PokemonName";
+import PokemonName from "./pokemonName";
 
 function Header(props) {
   const { pokemonId, setPokemonId } = props;
