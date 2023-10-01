@@ -33,6 +33,7 @@ function ImageGroup({ id, color }) {
     "whitespace-nowrap",
     color,
     "laptop-sm:text-[9rem]",
+    "laptop-sm:ml-6",
   );
 
   if (error) return <p>Error : {error.message}</p>;
@@ -46,23 +47,23 @@ function ImageGroup({ id, color }) {
   return (
     <div
       className="
-      flex flex-col items-center justify-center pt-24 laptop-sm:max-w-xl laptop-sm:pt-16"
+      flex flex-col items-center justify-center pt-24 laptop-sm:max-w-xl laptop-sm:pt-16 laptop-sm:ml-28"
     >
       <p className={dynamicSecondaryColorClass}>{japanesePokemonName}</p>
       <div className="flex flex-row items-start h-56">
         <Image
-          className="w-60 -mt-8  z-10 laptop-sm:-mt-24 laptop-sm:w-[20rem]"
+          className="w-60 -mt-8 z-10 laptop-sm:-mt-24 laptop-sm:ml-28 laptop-sm:w-[24rem] laptop-sm:order-2"
           src={pokemonImageUrl}
           alt="pokemon"
-          width={448}
-          height={448}
+          width={800}
+          height={800}
           priority
         />
-        <div className="flex flex-col items-center -ml-4 mb-16">
+        <div className="flex flex-col items-center -ml-4 mb-16 laptop-sm:mt-4 laptop-sm:translate-x-8 ">
           {types.map((type) => (
             <Image
               key={type}
-              className="w-20"
+              className="w-20 laptop-sm:w-28"
               src={`/assets/${type}.png`}
               alt={type}
               width={80}

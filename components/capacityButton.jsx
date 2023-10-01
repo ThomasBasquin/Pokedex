@@ -1,7 +1,7 @@
 import React from "react";
 import classNames from "classnames";
 
-const CapacityButton = ({ color, id }) => {
+function CapacityButton({ color, id }) {
   const dynamicSecondaryColorClass = classNames(
     "rounded-full",
     "text-white",
@@ -29,18 +29,15 @@ const CapacityButton = ({ color, id }) => {
   );
 
   return (
-    <>
-      <button
-        type="button"
-        onClick={handleClick}
-        className={buttonClasses}
-        style={{ WebkitTapHighlightColor: "transparent" }}
-      >
-        <span className={dynamicSecondaryColorClass}>Écouter le cri</span>
-        <span className="hidden tab:inline">Écouter</span>
-      </button>
-    </>
+    <button
+      type="button"
+      onClick={handleClick}
+      className={buttonClasses}
+      style={{ WebkitTapHighlightColor: "transparent" }}
+    >
+      <span className={dynamicSecondaryColorClass}>Écouter le cri</span>
+    </button>
   );
-};
+}
 
 export default CapacityButton;

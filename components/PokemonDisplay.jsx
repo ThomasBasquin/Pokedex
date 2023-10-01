@@ -44,7 +44,7 @@ function PokemonDisplay(props) {
   const renderMobileContent = () => (
     <>
       <ImageGroup id={id} color={secondaryTextClass} />
-      <div className="flex laptop-sm:hidden  flex-shrink justify-between mt-7">
+      <div className="flex laptop-sm:hidden flex-shrink justify-between mt-7">
         <PokemonName id={id} />
         {!loading && (
           <CapacityButton color={secondaryBackgroundClass} id={id} />
@@ -55,10 +55,15 @@ function PokemonDisplay(props) {
   );
 
   const renderDesktopContent = () => (
-    <div className="flex flex-row justify-between items-center">
-      <PokemonSizeWeight id={id} />
+    <div className="flex flex-row justify-around -translate-y-5 gap-8">
       <ImageGroup id={id} color={secondaryTextClass} />
-      <PokemonInfo id={id} isMobile={isMobile} />
+      <div className="flex flex-col justify-center gap-[8rem] mt-48 -translate-x-4">
+        <PokemonInfo id={id} isMobile={isMobile} />
+        <div className="flex flex-row justify-around items-center ">
+          <PokemonSizeWeight id={id} />
+          <CapacityButton color={secondaryBackgroundClass} id={id} />
+        </div>
+      </div>
     </div>
   );
 
