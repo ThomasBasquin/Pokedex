@@ -68,7 +68,7 @@ function PokemonDisplay(props) {
   );
 
   return (
-    <div className="relative flex justify-center items-center h-screen">
+    <div className="relative flex justify-center items-center h-[70vh] laptop-sm:h-[95vh] laptop-sm:items-center">
       {transitions((style, i) => (
         <animated.div style={style}>
           {isMobile
