@@ -52,7 +52,7 @@ function ImageGroup({ id, color }) {
       <p className={dynamicSecondaryColorClass}>{japanesePokemonName}</p>
       <div className="flex flex-row items-start h-56">
         <Image
-          className="w-60 -mt-8 z-10 laptop-sm:-mt-24 laptop-sm:ml-28 laptop-sm:w-[24rem] laptop-sm:order-2"
+          className="w-60 -mt-8 z-10 laptop-sm:-mt-24 laptop-sm:ml-28 laptop-sm:w-[21rem] laptop-sm:order-2"
           src={pokemonImageUrl}
           alt="pokemon"
           width={800}
