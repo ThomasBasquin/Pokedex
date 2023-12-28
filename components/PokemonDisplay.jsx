@@ -58,7 +58,7 @@ function PokemonDisplay(props) {
   const renderDesktopContent = () => (
     <div className="flex flex-row justify-around -translate-y-5 gap-8">
       <ImageGroup id={id} color={secondaryTextClass} />
-      <div className="flex flex-col justify-center gap-[8rem] mt-48 -translate-x-4">
+      <div className="flex flex-col  justify-center gap-[8rem] mt-48 -translate-x-4">
         <PokemonInfo id={id} isMobile={isMobile} />
         <div className="flex flex-row justify-around items-center ">
           <PokemonSizeWeight id={id} />
@@ -69,7 +69,7 @@ function PokemonDisplay(props) {
   );
 
   return (
-    <div className="relative">
+    <div className="relative flex justify-center items-center h-screen">
       {transitions((style, i) => (
         <animated.div style={style}>
           {isMobile
