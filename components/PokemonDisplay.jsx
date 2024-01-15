@@ -1,5 +1,5 @@
 /* eslint-disable import/no-unresolved */
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useTransition, animated } from "react-spring";
 import PokemonName from "./pokemonName";
 import PokemonInfo from "./pokemonInfo";
@@ -11,6 +11,7 @@ import Loader from "./Loader";
 
 function PokemonDisplay(props) {
   const { direction, loading, id, primaryType, isMobile } = props;
+  const [windowHeight, setWindowHeight] = useState(0);
 
   const { secondaryTextClass, secondaryBackgroundClass } =
     getTypeColors(primaryType);
@@ -39,6 +40,17 @@ function PokemonDisplay(props) {
     },
     config: { duration: 300 },
   });
+
+  useEffect(() => {
+    setWindowHeight(window.innerHeight);
+
+    const handleResize = () => {
+      setWindowHeight(window.innerHeight);
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   if (loading) return <Loader />;
 
@@ -69,7 +81,10 @@ function PokemonDisplay(props) {
   );
 
   return (
-    <div className="relative flex justify-center items-center h-screen">
+    <div
+      style={{ height: `${windowHeight - 120}px` }}
+      className="relative flex justify-center items-center"
+    >
       {transitions((style, i) => (
         <animated.div style={style}>
           {isMobile
