@@ -52,6 +52,12 @@ Pour lancer l'application en mode production :
 
 <br/>
 
+## Site en ligne 🌍
+
+Le site est accessible à l'adresse : [thomasbasquin.fr](http://thomasbasquin.fr)
+
+<br/>
+
 ## Technologies utilisées 💻
 
 - React
