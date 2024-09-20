@@ -6,6 +6,9 @@
 
 Ce projet est une application web basée sur React et Next.js qui permet aux utilisateurs de visualiser des informations sur les Pokémon, notamment leur nom japonais et leur type. Les Pokémon sont présentés avec des icônes et des couleurs spécifiques à chaque type pour offrir une expérience visuelle attrayante et informative.
 
+<img width="960" alt="screen_pokedex" src="https://github.com/ThomasBasquin/Pokedex/assets/60144822/2d4fe921-ac11-4831-8d14-854477dcf93a">
+
+
 <br/>
 
 ## Fonctionnalités 🛠️
@@ -31,6 +34,8 @@ Pour installer et lancer ce projet sur votre machine locale, suivez les étapes 
 2. Accédez au dossier du projet : `cd Pokedex`
 3. Installez les dépendances avec `npm install` ou `yarn install`
 
+<img width="960" alt="screen2_pokedex" src="https://github.com/ThomasBasquin/Pokedex/assets/60144822/3cf1faf5-8bb5-4246-a654-02d5ebd8a547">
+
 <br/>
 
 ## Utilisation 🚀
@@ -49,6 +54,14 @@ Pour lancer l'application en mode production :
 1. Créez une version de production avec `npm run build` ou `yarn build`
 2. Lancez l'application avec `npm start` ou `yarn start`
 3. Ouvrez [http://localhost:3000](http://localhost:3000) pour visualiser l'application dans le navigateur.
+
+<br/>
+
+## Site en ligne 🌍
+
+Le site est accessible à l'adresse : [thomasbasquin.fr](http://thomasbasquin.fr)
+
+<img width="960" alt="screen_pokedex" src="https://github.com/ThomasBasquin/Pokedex/assets/60144822/772c8360-57ee-4a58-a549-d5382c264bad">
 
 <br/>
 
