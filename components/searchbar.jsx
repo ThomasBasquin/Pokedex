@@ -98,7 +98,7 @@ function Searchbar({ setId }) {
           <img
             src="/assets/loupe.png"
             alt="loupe"
-            className="h-5 absolute right-14 top-1/2 transform -translate-y-1/2 -rotate-90 active:scale-90 cursor-pointer"
+            className="h-4 absolute right-14 top-1/2 opacity-75 transform -translate-y-1/2 -rotate-90 active:scale-90 cursor-pointer"
           />
         </button>
       </div>
