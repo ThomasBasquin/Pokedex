@@ -24,26 +24,32 @@ body {
 }
 
 .custom-scrollbar {
-  /* Scrollbar styles */
-  scrollbar-width: thin;
+  overflow: auto; /* ou scroll */
+  max-height: 300px; /* Ajustez selon vos besoins */
 }
 
-/* For Webkit browsers like Chrome, Safari */
 .custom-scrollbar::-webkit-scrollbar {
   width: 0.4em;
-  border-radius: 10px;
 }
 
 .custom-scrollbar::-webkit-scrollbar-track {
+  -webkit-border-radius: 10px;
   border-radius: 10px;
+  background: transparent;
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb {
-  background-color: rgba(0, 0, 0, 0.4);
+  -webkit-border-radius: 10px;
   border-radius: 10px;
+  background-color: rgba(0, 0, 0, 0.4);
 }
 
-/* Disable text and image selecting: */ 
+/* Optionnel : style au survol */
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+/* Disable text and image selecting: */
 body {
   -webkit-user-select: none;
   -moz-user-select: none;
