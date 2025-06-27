@@ -7,14 +7,22 @@ import PokemonSizeWeight from "./PokemonSizeWeight";
 import CapacityButton from "./capacityButton";
 import ImageGroup from "./imageGroup";
 import { getTypeColors } from "../utils/getTypeColor";
+import pokemonCache from "../services/pokemonCache";
 import Loader from "./Loader";
 
 function PokemonDisplay(props) {
   const { direction, loading, id, primaryType, isMobile } = props;
   const [windowHeight, setWindowHeight] = useState(0);
 
-  const { secondaryTextClass, secondaryBackgroundClass } =
-    getTypeColors(primaryType);
+  // Helper function to get colors for a specific Pokemon ID
+  const getPokemonColors = (pokemonId) => {
+    const pokemonData = pokemonCache[pokemonId];
+    if (pokemonData && pokemonData.types && pokemonData.types[0]) {
+      return getTypeColors(pokemonData.types[0]);
+    }
+    // Fallback to current primaryType if data not in cache
+    return getTypeColors(primaryType);
+  };
 
   const transitions = useTransition(id, {
     from: {
@@ -54,31 +62,37 @@ function PokemonDisplay(props) {
 
   if (loading) return <Loader />;
 
-  const renderMobileContent = (pokemonId) => (
-    <>
-      <ImageGroup id={pokemonId} color={secondaryTextClass} />
-      <div className="flex laptop-sm:hidden flex-shrink justify-between mt-7">
-        <PokemonName id={pokemonId} />
-        {!loading && (
-          <CapacityButton color={secondaryBackgroundClass} id={pokemonId} />
-        )}
-      </div>
-      <PokemonInfo id={pokemonId} isMobile={isMobile} />
-    </>
-  );
-
-  const renderDesktopContent = (pokemonId) => (
-    <div className="flex flex-row justify-around -translate-y-5 gap-8">
-      <ImageGroup id={pokemonId} color={secondaryTextClass} />
-      <div className="flex flex-col  justify-center gap-[8rem] mt-48 -translate-x-4">
+  const renderMobileContent = (pokemonId) => {
+    const { secondaryTextClass, secondaryBackgroundClass } = getPokemonColors(pokemonId);
+    return (
+      <>
+        <ImageGroup id={pokemonId} color={secondaryTextClass} />
+        <div className="flex laptop-sm:hidden flex-shrink justify-between mt-7">
+          <PokemonName id={pokemonId} />
+          {!loading && (
+            <CapacityButton color={secondaryBackgroundClass} id={pokemonId} />
+          )}
+        </div>
         <PokemonInfo id={pokemonId} isMobile={isMobile} />
-        <div className="flex flex-row justify-around items-center ">
-          <PokemonSizeWeight id={pokemonId} />
-          <CapacityButton color={secondaryBackgroundClass} id={pokemonId} />
+      </>
+    );
+  };
+
+  const renderDesktopContent = (pokemonId) => {
+    const { secondaryTextClass, secondaryBackgroundClass } = getPokemonColors(pokemonId);
+    return (
+      <div className="flex flex-row justify-around -translate-y-5 gap-8">
+        <ImageGroup id={pokemonId} color={secondaryTextClass} />
+        <div className="flex flex-col  justify-center gap-[8rem] mt-48 -translate-x-4">
+          <PokemonInfo id={pokemonId} isMobile={isMobile} />
+          <div className="flex flex-row justify-around items-center ">
+            <PokemonSizeWeight id={pokemonId} />
+            <CapacityButton color={secondaryBackgroundClass} id={pokemonId} />
+          </div>
         </div>
       </div>
-    </div>
-  );
+    );
+  };
 
   return (
     <div
