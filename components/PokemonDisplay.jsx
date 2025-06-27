@@ -54,27 +54,27 @@ function PokemonDisplay(props) {
 
   if (loading) return <Loader />;
 
-  const renderMobileContent = () => (
+  const renderMobileContent = (pokemonId) => (
     <>
-      <ImageGroup id={id} color={secondaryTextClass} />
+      <ImageGroup id={pokemonId} color={secondaryTextClass} />
       <div className="flex laptop-sm:hidden flex-shrink justify-between mt-7">
-        <PokemonName id={id} />
+        <PokemonName id={pokemonId} />
         {!loading && (
-          <CapacityButton color={secondaryBackgroundClass} id={id} />
+          <CapacityButton color={secondaryBackgroundClass} id={pokemonId} />
         )}
       </div>
-      <PokemonInfo id={id} isMobile={isMobile} />
+      <PokemonInfo id={pokemonId} isMobile={isMobile} />
     </>
   );
 
-  const renderDesktopContent = () => (
+  const renderDesktopContent = (pokemonId) => (
     <div className="flex flex-row justify-around -translate-y-5 gap-8">
-      <ImageGroup id={id} color={secondaryTextClass} />
+      <ImageGroup id={pokemonId} color={secondaryTextClass} />
       <div className="flex flex-col  justify-center gap-[8rem] mt-48 -translate-x-4">
-        <PokemonInfo id={id} isMobile={isMobile} />
+        <PokemonInfo id={pokemonId} isMobile={isMobile} />
         <div className="flex flex-row justify-around items-center ">
-          <PokemonSizeWeight id={id} />
-          <CapacityButton color={secondaryBackgroundClass} id={id} />
+          <PokemonSizeWeight id={pokemonId} />
+          <CapacityButton color={secondaryBackgroundClass} id={pokemonId} />
         </div>
       </div>
     </div>
@@ -85,16 +85,11 @@ function PokemonDisplay(props) {
       style={{ height: `${windowHeight - 120}px` }}
       className="relative flex justify-center items-center"
     >
-      {transitions((style, i) => (
+      {transitions((style, pokemonId) => (
         <animated.div style={style}>
           {isMobile
-            ? renderMobileContent(
-                i,
-                secondaryTextClass,
-                secondaryBackgroundClass,
-                loading,
-              )
-            : renderDesktopContent(i)}
+            ? renderMobileContent(pokemonId)
+            : renderDesktopContent(pokemonId)}
         </animated.div>
       ))}
     </div>
