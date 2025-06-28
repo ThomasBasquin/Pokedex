@@ -2,14 +2,13 @@
   "name": "pokedex",
   "private": true,
   "version": "0.0.0",
-  "type": "module",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "export": "next build"
   },
   "dependencies": {
-    "@google-cloud/translate": "^7.2.2",
     "@react-spring/web": "^9.7.2",
     "animate.css": "^4.1.1",
     "axios": "^1.4.0",

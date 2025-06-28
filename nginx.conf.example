@@ -1,0 +1,42 @@
+server {
+    listen 80;
+    server_name votre-domaine.com;  # Remplacez par votre domaine
+    
+    root /var/www/pokedex;
+    index index.html;
+    
+    # Gestion des routes Next.js
+    location / {
+        try_files $uri $uri/ $uri.html =404;
+    }
+    
+    # Cache pour les assets statiques
+    location /assets/ {
+        expires 1y;
+        add_header Cache-Control "public, immutable";
+        try_files $uri =404;
+    }
+    
+    # Cache pour les fichiers Next.js
+    location /_next/static/ {
+        expires 1y;
+        add_header Cache-Control "public, immutable";
+        try_files $uri =404;
+    }
+    
+    # Gestion des favicons
+    location /favicon/ {
+        expires 30d;
+        add_header Cache-Control "public";
+        try_files $uri =404;
+    }
+    
+    # Headers de sécurité
+    add_header X-Frame-Options "SAMEORIGIN" always;
+    add_header X-XSS-Protection "1; mode=block" always;
+    add_header X-Content-Type-Options "nosniff" always;
+    
+    # Compression
+    gzip on;
+    gzip_types text/plain text/css application/json application/javascript text/xml application/xml application/xml+rss text/javascript;
+}

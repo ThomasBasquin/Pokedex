@@ -1,8 +1,7 @@
-const images = {
-  domains: ["assets.pokemon.com"],
-};
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  output: 'export',
+  trailingSlash: true,
+}
 
-module.exports = {
-  images: images,
-  // basePath: "/pokedex",
-};
+module.exports = nextConfig

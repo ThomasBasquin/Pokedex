@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import classNames from "classnames";
-import Image from "next/image";
 import { usePokemonData } from "../hooks/usePokemon";
 
 function ImageGroup({ id, color }) {
@@ -51,17 +50,16 @@ function ImageGroup({ id, color }) {
     >
       <p className={dynamicSecondaryColorClass}>{japanesePokemonName}</p>
       <div className="flex flex-row items-start h-56 laptop-sm:h-auto">
-        <Image
+        <img
           className="w-60 -mt-8 z-10 laptop-sm:ml-28 laptop-sm:w-[24rem] laptop-sm:order-2"
           src={pokemonImageUrl}
           alt="pokemon"
           width={800}
           height={800}
-          priority
         />
         <div className="flex flex-col items-center -ml-4 mb-16 laptop-sm:mt-4 laptop-sm:translate-x-8 ">
           {types.map((type) => (
-            <Image
+            <img
               key={type}
               className="w-20 laptop-sm:w-28"
               src={`/assets/${type}.png`}

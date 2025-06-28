@@ -1,5 +1,4 @@
 import Link from "next/link";
-import Image from "next/image";
 import React, { useEffect, useState } from "react";
 
 function App() {
@@ -60,18 +59,16 @@ function App() {
       className="w-screen h-screen bg-pokemon-bg bg-center bg-no-repeat bg-cover p-0 m-0 align-middle tracking-wide "
       style={windowHeight !== null ? { "--vh": `${windowHeight}px` } : {}}
     >
-      <Image
+      <img
         src="/assets/Pokedex_bis.png"
         alt="Pokedex"
         width={192}
         height={72}
-        quality={100}
         className="
         w-72 mx-auto pt-16 
         tab:w-80 tab:pt-11 
         laptop-sm:w-80 laptop-sm:pt-10 
         laptop-lg:w-3/12 "
-        priority
       />
 
       <div
@@ -83,7 +80,7 @@ function App() {
       desktop-xl:bottom-16"
       >
         <Link href="/pokedex">
-          <Image
+          <img
             src="/assets/pokeball.png"
             alt="pokeball"
             width={96}

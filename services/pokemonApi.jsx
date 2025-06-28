@@ -3,18 +3,6 @@ import pokemonCache from "./pokemonCache";
 
 const API_BASE_URL = "https://pokeapi.co/api/v2";
 
-async function getTranslation(text) {
-  try {
-    const response = await axios.post("/api/translate", {
-      text,
-      source: "en",
-    });
-    return response.data.translatedText;
-  } catch (error) {
-    console.error(error);
-    return null;
-  }
-}
 
 const getPokemonText = async (id) => {
   const response = await axios.get(`${API_BASE_URL}/pokemon-species/${id}`);
@@ -36,21 +24,12 @@ export const getPokemonData = async (id) => {
     getPokemonInfo(id),
   ]);
 
-  let frenchFlavorTextEntry;
-
-  // Trouver la première entrée de flavor text en français ou traduire celle en anglais à partir du pokémon 899
-  if (id < 899) {
-    frenchFlavorTextEntry = textData.flavor_text_entries.find(
-      (entry) => entry.language.name === "fr",
-    ) || { flavor_text: "Description non disponible" };
-  } else {
-    frenchFlavorTextEntry = textData.flavor_text_entries.find(
-      (entry) => entry.language.name === "en",
-    ) || { flavor_text: "Description non disponible" };
-    frenchFlavorTextEntry.flavor_text = await getTranslation(
-      frenchFlavorTextEntry.flavor_text,
-    );
-  }
+  // Trouver la première entrée de flavor text en français, sinon utiliser l'anglais
+  const frenchFlavorTextEntry = textData.flavor_text_entries.find(
+    (entry) => entry.language.name === "fr",
+  ) || textData.flavor_text_entries.find(
+    (entry) => entry.language.name === "en",
+  ) || { flavor_text: "Description non disponible" };
 
   // Trouver le nom en français ou utiliser une chaîne de caractères par défaut si non disponible
   const frenchNameEntry = textData.names.find(
