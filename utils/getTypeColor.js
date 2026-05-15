@@ -1,5 +1,29 @@
-/* eslint-disable import/prefer-default-export */
 const capitalize = (type) => type.charAt(0).toUpperCase() + type.slice(1);
+
+const TYPE_HEX = {
+  fire: "#b22f30",
+  water: "#002a4a",
+  grass: "#3aa938",
+  electric: "#fabc00",
+  psychic: "#e257a7",
+  ice: "#32afcf",
+  dragon: "#6759d3",
+  dark: "#604438",
+  fairy: "#e698d5",
+  normal: "#8c7a6c",
+  fighting: "#d64700",
+  flying: "#6b8fd1",
+  poison: "#9c389c",
+  ground: "#b57e41",
+  rock: "#8a704a",
+  bug: "#8c9a16",
+  ghost: "#7a29d6",
+  steel: "#9e9eae",
+};
+
+export const getTypeHex = (type) => TYPE_HEX[type] ?? "#8c7a6c";
+
+export const POKEMON_TYPES = Object.keys(TYPE_HEX);
 
 export const getTypeColors = (type) => {
   const capType = capitalize(type);

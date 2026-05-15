@@ -4,9 +4,9 @@
   "version": "0.0.0",
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "next build && next export",
     "start": "next start",
-    "export": "next build"
+    "export": "next build && next export"
   },
   "dependencies": {
     "@react-spring/web": "^9.7.2",
