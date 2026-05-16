@@ -41,3 +41,6 @@ out
 
 # OS
 Thumbs.db
+
+# Local scripts
+deploy.sh

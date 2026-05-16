@@ -1,7 +1,34 @@
-import React, { useEffect } from "react";
+/* eslint-disable react/jsx-props-no-spreading */
+import React, { useState, useEffect, useLayoutEffect } from "react";
+import Head from "next/head";
+import { useMediaQuery } from "react-responsive";
+import { useSwipeable } from "react-swipeable";
+import { getPokemonData, preloadPokemonData } from "../services/pokemonApi";
+import { getTypeHex } from "../utils/getTypeColor";
+import { usePokemonData } from "../hooks/usePokemon";
+import PokemonListMobile from "../components/mobile/pokemonListMobile";
+import PokemonListDesktop from "../components/pc/pokemonListDesktop";
+import PokemonListVertical from "../components/pc/pokemonListVertical";
+import Header from "../components/Header";
+import PokemonDisplay from "../components/PokemonDisplay";
 
-function App() {
-  // Preload types images in http cache
+const useBrowserLayoutEffect =
+  typeof window === "undefined" ? useEffect : useLayoutEffect;
+
+function Pokedex({ initialPokemonData }) {
+  const [id, setId] = useState(1);
+  const [range, setRange] = useState("1");
+  const [direction, setDirection] = useState("right");
+  const [primaryType, setPrimaryType] = useState(
+    initialPokemonData.types[0] || "grass",
+  );
+  const { loading, data = initialPokemonData } = usePokemonData(id);
+  const isMobile = useMediaQuery({ query: "(max-width: 1224px)" });
+
+  useEffect(() => {
+    if (data) setPrimaryType(data.types[0] || "grass");
+  }, [data]);
+
   useEffect(() => {
     const images = [
       "/assets/bug.png",
@@ -23,7 +50,6 @@ function App() {
       "/assets/steel.png",
       "/assets/water.png",
     ];
-
     images.forEach((image) => {
       const link = document.createElement("link");
       link.href = image;
@@ -33,61 +59,132 @@ function App() {
     });
   }, []);
 
-  return (
-    <div
-      className="w-screen h-screen bg-pokemon-bg bg-center bg-no-repeat bg-cover p-0 m-0 align-middle tracking-wide "
-    >
-      <img
-        src="/assets/Pokedex_bis.png"
-        alt="Pokedex"
-        width={192}
-        height={72}
-        className="
-        w-72 mx-auto pt-16 
-        tab:w-80 tab:pt-11 
-        laptop-sm:w-80 laptop-sm:pt-10 
-        laptop-lg:w-3/12 "
-      />
+  useEffect(() => {
+    document.documentElement.style.overscrollBehavior = "none";
+    document.body.style.overflow = "hidden";
+    document.body.style.overscrollBehavior = "none";
+  }, []);
 
+  useEffect(() => {
+    const calculId = id + 1;
+    let newRange = Math.ceil(calculId / 50) * 50 - 50;
+    if (newRange < 1) newRange = 1;
+    setRange(newRange.toString());
+  }, [id]);
+
+  const handleSwipe = useSwipeable({
+    onSwipedLeft: () =>
+      setId((prevId) => {
+        if (prevId < 1008) {
+          setDirection("right");
+          preloadPokemonData(prevId + 2);
+          return prevId + 1;
+        }
+        return prevId;
+      }),
+    onSwipedRight: () =>
+      setId((prevId) => {
+        if (prevId > 1) {
+          setDirection("left");
+          preloadPokemonData(prevId - 2);
+          return prevId - 1;
+        }
+        return prevId;
+      }),
+    preventDefaultTouchmoveEvent: true,
+    trackMouse: true,
+  });
+
+  const typeHex = getTypeHex(primaryType);
+
+  useBrowserLayoutEffect(() => {
+    document.documentElement.style.setProperty(
+      "--pokemon-theme-color",
+      typeHex,
+    );
+    document.documentElement.style.backgroundColor = typeHex;
+    document.body.style.backgroundColor = typeHex;
+
+    let themeColorMeta = document.querySelector('meta[name="theme-color"]');
+    if (!themeColorMeta) {
+      themeColorMeta = document.createElement("meta");
+      themeColorMeta.setAttribute("name", "theme-color");
+      document.head.appendChild(themeColorMeta);
+    }
+    themeColorMeta.setAttribute("content", typeHex);
+  }, [typeHex]);
+
+  return (
+    <>
+      <Head>
+        <meta name="theme-color" content={typeHex} key="theme-color" />
+      </Head>
       <div
-        className="
-      w-full flex flex-col justify-center items-center absolute bottom-7 
-      tab:bottom-14 
-      laptop-sm:bottom-10 
-      laptop-lg:bottom-12 
-      desktop-xl:bottom-16"
-      >
-        <a href="/pokedex">
-          <img
-            src="/assets/pokeball.png"
-            alt="pokeball"
-            width={96}
-            height={96}
-            className="
-              w-24 bottom-12 animate-bounce transition-all duration-200
-              laptop-sm:w-16 laptop-sm:bottom-6
-              laptop-lg:w-28
-              desktop-xl:w-28 "
-          />
-        </a>
-        <h2 className="tab:hidden text-white mt-2 font-semibold text-sm hover:text-gray-200 hover:scale-110 hover:tracking-wider hover:cursor-default transition-all duration-200">
-          Appuyer sur la Pokeball pour entrer
-        </h2>
-        <h2
-          className="
-        hidden 
-        text-white mt-2 font-semibold text-lg hover:tracking-wider hover:cursor-default transition-all duration-200
-        tab:inline 
-        tab:text-lg 
-        laptop-sm:mt-2 laptop-sm:text-lg 
-        laptop-lg:text-2xl 
-        desktop-xl:text-2xl  "
+        key={`top-${typeHex}`}
+        aria-hidden="true"
+        className="safari-theme-edge safari-theme-edge--top"
+        style={{ "--safari-theme-color": typeHex }}
+      />
+      <div
+        key={`bottom-${typeHex}`}
+        aria-hidden="true"
+        className="safari-theme-edge safari-theme-edge--bottom"
+        style={{ "--safari-theme-color": typeHex }}
+      />
+      <div className="fixed inset-0 flex justify-center overflow-hidden">
+        <div
+          aria-hidden="true"
+          className="pokemon-viewport-background absolute inset-0"
+          style={{ backgroundColor: typeHex }}
+        />
+        <div
+          {...handleSwipe}
+          className="relative z-10 flex flex-col h-full w-screen tracking-wide"
+          style={{
+            paddingTop: "env(safe-area-inset-top)",
+            paddingBottom: "env(safe-area-inset-bottom)",
+          }}
         >
-          Cliquer sur la Pokeball pour entrer
-        </h2>
+          <Header pokemonId={id} setPokemonId={setId} surfaceColor={typeHex} />
+          <PokemonDisplay
+            pokemon={data}
+            direction={direction}
+            loading={loading}
+            id={id}
+            primaryType={primaryType}
+            isMobile={isMobile}
+          />
+        </div>
+        {isMobile ? (
+          <PokemonListMobile
+            selectedId={id}
+            onPokemonSelect={setId}
+            setDirection={setDirection}
+            surfaceColor={typeHex}
+          />
+        ) : (
+          <>
+            <PokemonListVertical
+              selectedId={id}
+              onPokemonSelect={setId}
+              setDirection={setDirection}
+              selectedRange={range}
+            />
+            <PokemonListDesktop
+              selectedRange={range}
+              setSelectedRange={setRange}
+              onPokemonSelect={setId}
+            />
+          </>
+        )}
       </div>
-    </div>
+    </>
   );
 }
 
-export default App;
+export default Pokedex;
+
+export async function getStaticProps() {
+  const initialPokemonData = await getPokemonData(1);
+  return { props: { initialPokemonData } };
+}

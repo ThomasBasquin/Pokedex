@@ -3,8 +3,14 @@ import React, { useState, useEffect } from "react";
 import { FixedSizeList as List } from "react-window";
 import AutoSizer from "react-virtualized-auto-sizer";
 import { preloadPokemonData } from "../../services/pokemonApi";
+import { darkenHex } from "../../utils/getTypeColor";
 
-function PokemonListMobile({ selectedId, onPokemonSelect, setDirection }) {
+function PokemonListMobile({
+  selectedId,
+  onPokemonSelect,
+  setDirection,
+  surfaceColor = "#3aa938",
+}) {
   const pokemons = [...Array(1008).keys()].map((i) => i + 1);
   const listRef = React.useRef();
   const [isLeftAnimated, setIsLeftAnimated] = useState(false);
@@ -66,11 +72,9 @@ function PokemonListMobile({ selectedId, onPokemonSelect, setDirection }) {
       className="flex fixed justify-center w-11/12 overflow-auto bottom-5 py-1
       laptop-sm:w-1/2"
       style={{
-        background: "rgba(0, 0, 0, 0.25)",
+        backgroundColor: darkenHex(surfaceColor, 0.25),
         borderRadius: "16px",
         boxShadow: "0 4px 23px rgba(0, 0, 0, 0.1)",
-        backdropFilter: "blur(7.4px)",
-        WebkitBackdropFilter: "blur(7.4px)",
       }}
     >
       <button

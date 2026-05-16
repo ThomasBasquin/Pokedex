@@ -8,17 +8,60 @@ preconnect;
 html,
 body {
   font-family: "Poppins", sans-serif;
-  overflow: hidden;
-  overscroll-behavior: none;
-  /* prevent iOS Safari rubber-band bounce that misaligns fixed elements */
-  position: fixed;
-  width: 100%;
+  background-color: var(--pokemon-theme-color, #3aa938);
   height: 100%;
 }
 
+body {
+  overflow: hidden;
+}
+
+html {
+  min-height: 100%;
+}
+
+body,
+#__next {
+  min-height: 100%;
+}
+
+.safari-theme-edge {
+  position: fixed;
+  left: 0;
+  right: 0;
+  z-index: 1;
+  width: 100%;
+  height: 8px;
+  pointer-events: none;
+}
+
+.safari-theme-edge--top {
+  top: 0;
+  background: linear-gradient(
+    to bottom,
+    var(--safari-theme-color) 0%,
+    color-mix(in srgb, var(--safari-theme-color) 55%, transparent) 42%,
+    transparent 100%
+  );
+}
+
+.safari-theme-edge--bottom {
+  bottom: 0;
+  background: linear-gradient(
+    to top,
+    var(--safari-theme-color) 0%,
+    color-mix(in srgb, var(--safari-theme-color) 55%, transparent) 42%,
+    transparent 100%
+  );
+}
+
+.pokemon-viewport-background {
+  z-index: 0;
+}
+
 .h-screen {
-  height: 100vh; /* Fallback for old browsers */
-  height: 100dvh; /* Handles iOS Safari toolbar correctly */
+  height: 100vh;
+  height: 100dvh;
 }
 
 .backgroundFade {
@@ -30,7 +73,7 @@ body {
 }
 
 .custom-scrollbar {
-  overflow: auto; /* ou scroll */
+  overflow: auto;
   max-height: 300px; /* Ajustez selon vos besoins */
 }
 

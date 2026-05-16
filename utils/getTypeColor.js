@@ -25,6 +25,18 @@ export const getTypeHex = (type) => TYPE_HEX[type] ?? "#8c7a6c";
 
 export const POKEMON_TYPES = Object.keys(TYPE_HEX);
 
+export const darkenHex = (hex, opacity) => {
+  const normalizedHex = hex.replace("#", "");
+  const red = parseInt(normalizedHex.slice(0, 2), 16);
+  const green = parseInt(normalizedHex.slice(2, 4), 16);
+  const blue = parseInt(normalizedHex.slice(4, 6), 16);
+  const multiplier = 1 - opacity;
+
+  return `rgb(${Math.round(red * multiplier)}, ${Math.round(
+    green * multiplier,
+  )}, ${Math.round(blue * multiplier)})`;
+};
+
 export const getTypeColors = (type) => {
   const capType = capitalize(type);
   return {

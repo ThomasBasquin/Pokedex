@@ -2,8 +2,9 @@
 import React, { useState } from "react";
 import Fuse from "fuse.js";
 import pokemonList from "../services/pokemonData.json";
+import { darkenHex } from "../utils/getTypeColor";
 
-function Searchbar({ setId }) {
+function Searchbar({ setId, surfaceColor = "#3aa938" }) {
   const [search, setSearch] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [errorMessageIsVisible, setErrorMessageIsVisible] = useState(false);
@@ -61,7 +62,7 @@ function Searchbar({ setId }) {
   return (
     <div>
       <div
-        className={`z-20 text-[0.900rem] mt-4 h-9 flex w-full justify-center items-center relative animate__animated transition-transform
+        className={`z-20 text-[0.900rem] mt-4 h-9 flex w-full justify-center items-center relative animate__animated
         laptop-sm:w-96 laptop-sm:mt-0  ${
           errorMessageIsVisible ? "animate__headShake " : ""
         }`}
@@ -76,17 +77,15 @@ function Searchbar({ setId }) {
               searchPokemon();
             }
           }}
-          className={`transition-border-color duration-500 border w-4/5 h-full text-white px-4 placeholder:text-gray-300 placeholder:text-opacity-60 ${
+          className={`border w-4/5 h-full text-white px-4 placeholder:text-gray-300 placeholder:text-opacity-60 ${
             errorMessageIsVisible
               ? "border-red-600 border-2"
               : "border-transparent border-0"
           }}`}
           style={{
-            background: "rgba(0, 0, 0, 0.35)",
+            backgroundColor: darkenHex(surfaceColor, 0.35),
             borderRadius: "16px",
             boxShadow: "0 4px 23px rgba(0, 0, 0, 0.1)",
-            backdropFilter: "blur(7.4px)",
-            WebkitBackdropFilter: "blur(7.4px)",
           }}
         />
         <button
